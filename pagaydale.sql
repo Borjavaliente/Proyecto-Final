@@ -48,18 +48,17 @@ tipo VARCHAR(10)
 
 
 CREATE TABLE Multimedia(
-idamultimedia SMALLINT(3) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+idmultimedia SMALLINT(3) NOT NULL PRIMARY KEY AUTO_INCREMENT,
 tipo  VARCHAR(10),
 descripcion VARCHAR(60),
-fechasubidamult date,
 ruta VARCHAR(200)
 ) ENGINE=InnoDB;
 
 
 CREATE TABLE Gestion(
 idgestion SMALLINT(3) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-idadmin SMALLINT(3) NOT NULL AUTO_INCREMENT,
-idusuario SMALLINT(3) NOT NULL AUTO_INCREMENT,
+idadmin SMALLINT(3) NOT NULL,
+idusuario SMALLINT(3) NOT NULL,
 fechaalta date,
 fechabaja date,
 fechabloqueo date,
@@ -69,8 +68,8 @@ FOREIGN KEY (idusuario) REFERENCES Usuario(idusuario)
 
 CREATE TABLE Agrega(
 idagregar SMALLINT(3) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-idadmin SMALLINT(3) NOT NULL AUTO_INCREMENT,
-idoferta SMALLINT(3) NOT NULL AUTO_INCREMENT,
+idadmin SMALLINT(3) NOT NULL,
+idoferta SMALLINT(3) NOT NULL,
 fechalanzamiento date,
 fechafinaliza date,
 FOREIGN KEY (idadmin) REFERENCES Administrador(idadmin),
@@ -79,24 +78,21 @@ FOREIGN KEY (idoferta) REFERENCES Ofertas(idoferta)
 
 CREATE TABLE Sube(
 idsubida SMALLINT(3) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-idadmin SMALLINT(3) NOT NULL AUTO_INCREMENT,
-idmultimedia SMALLINT(3) NOT NULL AUTO_INCREMENT,
-KEY (fechadesubidamult),
+idadmin SMALLINT(3) NOT NULL,
+idmultimedia SMALLINT(3) NOT NULL,
+fechasubidamult date,
 FOREIGN KEY (idadmin) REFERENCES Administrador(idadmin),
 FOREIGN KEY (idmultimedia) REFERENCES Multimedia(idmultimedia)
 ) ENGINE InnoDB;
 
 
-<= Sube => idadmin,idmultimedia,fechadesubida
-
-
-ALTER DATABASE biblioteca CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER DATABASE tienda CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE Usuario CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE Juegos CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE Ofertas CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE Compras CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE Administrador CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE Multimedia CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-ALTER TABLE Gestionausuario CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER TABLE Gestion CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE Agrega CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE Sube CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;

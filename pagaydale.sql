@@ -96,3 +96,13 @@ ALTER TABLE Multimedia CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE Gestion CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE Agrega CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE Sube CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+
+insert into Usuario values (1,"Juan","Romero","1980-2-13","Juanillo_01","1111","ACTIVO");
+insert into Usuario values (2,"Joaquin","Hurtado","1980-5-14","Daleqdale","2222","ACTIVO");
+insert into Usuario values (3,"Daniel","Homero","1990-11-13","quepinquepan","3333","ACTIVO");
+insert into Usuario values (4,"Ana","Duran","1985-8-22","SUSanita","4444","ACTIVO");
+
+
+insert into Juegos values (1,"Pong","Pago","1","2016-2-22","SUSanita");
+insert into Juegos values (2,"Flapy Zero","Pago","2","2016-2-28","quepinquepan");

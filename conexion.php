@@ -1,12 +1,22 @@
-<?php
-$mysqli = new mysqli("localhost", "root", "alumno", "caridad");
-if ($mysqli->connect_errno) {
-    echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-}
-echo $mysqli->host_info . "\n";
-$mysqli = new mysqli("127.0.0.1", "root", "alumno", "caridad", 3306);
-if ($mysqli->connect_errno) {
-    echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-}
-echo $mysqli->host_info . "\n";
+<!-- CLASE CONEXIÓN  -->
+<?php 
+
+	class Conectar{
+		public $servidor; 
+		public $usuario; 
+		public $pass; 
+
+		public function conectar(){
+			$conectar=mysql_connect("localhost",'root',"toor");
+			mysql_select_db('biblioteca');
+			mysql_set_charset("utf8");
+		}
+
+		public function desconectar(){
+			mysql_close(); 
+		}
+
+	}
+
 ?>
+

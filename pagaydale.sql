@@ -7,8 +7,10 @@ nombre  VARCHAR(60),
 apellido VARCHAR(60),
 fechanacimiento date,
 nick  VARCHAR(25),
+correo VARCHAR(25),
 pass VARCHAR(15),
-estado VARCHAR(12) DEFAULT 'ACTIVO'
+estado VARCHAR(12) DEFAULT 'ACTIVO',
+rol VARCHAR(12)
 ) ENGINE=InnoDB;
 
 CREATE TABLE Juegos(
@@ -39,14 +41,6 @@ FOREIGN KEY (idjuego) REFERENCES Juegos(idjuego)
 ) ENGINE=InnoDB;
 
 
-CREATE TABLE Administrador(
-idadmin SMALLINT(3) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-nick  VARCHAR(60),
-pass VARCHAR(60),
-tipo VARCHAR(10)
-) ENGINE=InnoDB;
-
-
 CREATE TABLE Multimedia(
 idmultimedia SMALLINT(3) NOT NULL PRIMARY KEY AUTO_INCREMENT,
 tipo  VARCHAR(10),
@@ -57,31 +51,25 @@ ruta VARCHAR(200)
 
 CREATE TABLE Gestion(
 idgestion SMALLINT(3) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-idadmin SMALLINT(3) NOT NULL,
 idusuario SMALLINT(3) NOT NULL,
 fechaalta date,
 fechabaja date,
 fechabloqueo date,
-FOREIGN KEY (idadmin) REFERENCES Administrador(idadmin),
 FOREIGN KEY (idusuario) REFERENCES Usuario(idusuario)
 ) ENGINE=InnoDB;
 
 CREATE TABLE Agrega(
 idagregar SMALLINT(3) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-idadmin SMALLINT(3) NOT NULL,
 idoferta SMALLINT(3) NOT NULL,
 fechalanzamiento date,
 fechafinaliza date,
-FOREIGN KEY (idadmin) REFERENCES Administrador(idadmin),
 FOREIGN KEY (idoferta) REFERENCES Ofertas(idoferta)
 ) ENGINE InnoDB;
 
 CREATE TABLE Sube(
 idsubida SMALLINT(3) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-idadmin SMALLINT(3) NOT NULL,
 idmultimedia SMALLINT(3) NOT NULL,
 fechasubidamult date,
-FOREIGN KEY (idadmin) REFERENCES Administrador(idadmin),
 FOREIGN KEY (idmultimedia) REFERENCES Multimedia(idmultimedia)
 ) ENGINE InnoDB;
 
@@ -91,17 +79,16 @@ ALTER TABLE Usuario CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE Juegos CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE Ofertas CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE Compras CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-ALTER TABLE Administrador CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE Multimedia CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE Gestion CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE Agrega CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE Sube CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
-insert into Usuario values (1,"Juan","Romero","1980-2-13","Juanillo_01","1111","ACTIVO");
-insert into Usuario values (2,"Joaquin","Hurtado",NOW(),"Daleqdale","2222","ACTIVO");
-insert into Usuario values (3,"Daniel","Homero","1990-11-13","quepinquepan","3333","ACTIVO");
-insert into Usuario values (4,"Ana","Duran","1985-8-22","SUSanita","4444","ACTIVO");
+insert into Usuario values (1,"Juan","Romero","1980-2-13","Juanillo_01","franmolsan@gpeto.es","1111","ACTIVO");
+insert into Usuario values (2,"Joaquin","Hurtado",NOW(),"Daleqdale","franmolsan@gpeto.es","2222","ACTIVO");
+insert into Usuario values (3,"Daniel","Homero","1990-11-13","quepinquepan","franmolsan@gpeto.es","3333","ACTIVO");
+insert into Usuario values (4,"Ana","Duran","1985-8-22","SUSanita","franmolsan@gpeto.es","4444","ACTIVO");
 
 insert into Juegos values (1,"Pong","Pago","1","2016-2-22","SUSanita");
 insert into Juegos values (2,"Flapy Zero","Pago","2","2016-2-28","quepinquepan");

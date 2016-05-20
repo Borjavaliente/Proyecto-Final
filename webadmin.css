@@ -2,3 +2,20 @@
 body{margin-top:20px;height:800px}
 iframe{height:800px}
 .fa-fw {width: 2em;}
+
+.jumbotron {
+background: #358CCE;
+color: #FFF;
+border-radius: 0px;
+}
+.jumbotron-sm { padding-top: 24px;
+padding-bottom: 24px; }
+.jumbotron div {
+color: #FFF;
+}
+.titulin h3 {
+font-size: 24px;
+}
+.red{
+    color:red;
+    }

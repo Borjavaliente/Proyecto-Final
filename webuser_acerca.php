@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css" media="screen" title="no title" charset="utf-8">
     </head>
-    <body>
+    <body background="img/fondo2.jpg">
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -20,7 +20,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a target="_blank" href="#" class="navbar-brand">Paga y Dale</a>
+                    <a target="_blank" href="#" class="navbar-brand"><img class="logotipo" src="img/logo.jpg" alt=""/></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
@@ -91,6 +91,7 @@
             </div>
         </div>
         <br><br><br><br>
+
         <div class="container">
           <div class="row">
             <div class="span12">
@@ -271,6 +272,9 @@
                  <br>
             </div> <!-- /.row -->
         </div>
+        <br><br>
+        <br><br><br><br><br><br><br>
+        
         <br><br>
         <!--  footer -->
         <footer>

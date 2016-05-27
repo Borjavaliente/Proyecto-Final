@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <?php
-include "sesion_usuario.php"
+//include "sesion_usuario.php"
  ?>
-<html>
+<html background="img/fondo2.jpg">
     <head>
         <meta charset="utf-8">
         <title></title>
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="webuser.css" media="screen" title="no title" charset="utf-8">
-
         <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/spacelab/bootstrap.min.css" rel="stylesheet"/>
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css" media="screen" title="no title" charset="utf-8">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
         <link href="http://fonts.googleapis.com/css?family=Arimo:400" rel="stylesheet">
-        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="jquery.min.js"></script>
     </head>
-    <body>
+    <body background="img/fondo2.jpg">
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -27,20 +24,22 @@ include "sesion_usuario.php"
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a target="_blank" href="#" class="navbar-brand">My sApp.</a>
+                    <a target="_blank" href="#" class="navbar-brand"><img class="logotipo" src="img/logo.jpg" alt=""/></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Inicio</a></li>
-                        <li class="active"><a href="http://bootsnipp.com/snippets/featured/nav-account-manager" target="_blank">Inspirado en este ejemplo</a></li>
+                        <li><a href="webuser.php">Inicio</a></li>
+                        <li><a href="">Noticias</a></li>
                          <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">DropDown
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Explora
                             <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Link 2</a></li>
+                                <li><a href="webuser_donar.php">Ayudanos!!</a></li>
+                                <li><a href="webuser_acerca.php">Acerca de...</a></li>
                             </ul>
                          </li>
+                         <li><a href="webuser_contacto.php">Contacto</a></li>
                      </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -83,238 +82,172 @@ include "sesion_usuario.php"
                             </ul>
                         </li>
                     </ul>
+                    <ul>
+                        <form action="" class="search-form">
+                                 <div class="form-group has-feedback">
+                                   <label for="search" class="sr-only">Explora</label>
+                                   <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                                       <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                               </div>
+                         </form>
+                    </ul>
                 </div>
             </div>
         </div>
-
-<!-- slider -->
-<div class="row">
-    <div class="col-md-12">
-        <section class="section-white">
-          <div class="container">
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-              <!-- Indicators -->
-              <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-              </ol>
-
-              <!-- Wrapper for slides -->
-              <div class="carousel-inner">
-                <div class="item active">
-                  <img src="http://placehold.it/800x400" alt="...">
-                  <div class="carousel-caption">
-                    <h2>Heading</h2>
-                  </div>
-                </div>
-                <div class="item">
-                  <img src="http://placehold.it/800x400" alt="...">
-                  <div class="carousel-caption">
-                    <h2>Heading</h2>
-                  </div>
-                </div>
-                <div class="item">
-                  <img src="http://placehold.it/800x400" alt="...">
-                  <div class="carousel-caption">
-                    <h2>Heading</h2>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Controls -->
-              <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-              </a>
-              <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-              </a>
-            </div>
-
-          </div>
-        </section>
-
-    </div>
-</div>
 <br><br><br>
-<!--Barra de navegacion-->
-<a class="menu-bar" data-toggle="collapse" href="#menu">
-    <span class="bars"></span>
-</a>
-<div class="collapse menu" id="menu">
-    <ul class="list-inline">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Works</a></li>
-        <li><a href="#">Contact</a></li>
-    </ul>
-</div>
-
-<div class="container">
-    <div class="row">
-        <h2 class="text-center">Collapsible Menu</h2>
+<!-- slider -->
+<div id="carousel-1" class="carousel slide show" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-1" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-1" data-slide-to="1" ></li>
+            <li data-target="#carousel-1" data-slide-to="2" ></li>
+            <li data-target="#carousel-1" data-slide-to="3" ></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="img/snake.jpg" class="img-responsive" alt="">
+                <div class="carousel-caption">
+                    <h3> Crazy Snake </h3>
+                </div>
+            </div>
+            <div class="item ">
+                <img src="img/vv.jpg" class="img-responsive" alt="">
+                <div class="carousel-caption">
+                    <h3> VVVV está revolucionando el mercado </h3>
+                </div>
+            </div>
+            <div class="item ">
+                <img src="img/pong.jpg" class="img-responsive" alt="">
+                <div class="carousel-caption">
+                    <h3> Troll Pong la joya de los primeros juegos </h3>
+                </div>
+            </div>
+            <div class="item ">
+                <img src="img/flapy.jpg" class="img-responsive" alt="">
+                <div class="carousel-caption">
+                    <h3> Flappy planes!! version libre de flappy birds </h3>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 <br><br><br>
 <!-- Articulos -->
-
-<div class="container">
+<div class="container" style="">
     <div class="row">
-    	<div class="col-lg-3">
-    				<div class="cuadro_intro_hover " style="background-color:#cccccc;">
+        <br><br>
+            <h1 style="text-align:center"><strong>APLICACIONES</strong></h1>
+            <br><br>
+            <div class="col-md-4">
+        			<div class="cuadro_intro_hover " style="background-color:#cccccc">
 						<p style="text-align:center; margin-top:20px;">
-							<img src="http://trovacamporella.com/img/trovacamporella-fiat500.png" class="img-responsive" alt="">
+
+							<img src="img/evoland.jpg" class="img-responsive" alt="">
 						</p>
 						<div class="caption">
 							<div class="blur"></div>
 							<div class="caption-text">
-								<h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">THIS IS H3</h3>
-								<p>Loren ipsum dolor si amet ipsum dolor si amet ipsum dolor...</p>
-								<a class=" btn btn-default" href="http://trovacamporella.com"><span class="glyphicon glyphicon-plus"> INFO</span></a>
+								<h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">Evoland</h3>
+								<p>Divertido juego similar al Castle Crasher</p>
+								<a class=" btn btn-default" href="http://mispicaderos.com"><span class="glyphicon glyphicon-plus"> INFO</span></a>
 							</div>
 						</div>
 					</div>
-
-	    </div>
-        <div class="col-lg-3">
+	               </div>
+            <div class="col-md-4">
         			<div class="cuadro_intro_hover " style="background-color:#cccccc;">
 						<p style="text-align:center; margin-top:20px;">
-							<img src="http://placehold.it/500x330" class="img-responsive" alt="">
+							<img src="img/Indiana_heroes.jpg" class="img-responsive" alt="">
 						</p>
 						<div class="caption">
 							<div class="blur"></div>
 							<div class="caption-text">
-								<h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">THIS IS H3</h3>
-								<p>Loren ipsum dolor si amet ipsum dolor si amet ipsum dolor...</p>
+								<h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">Indiana Poms</h3>
+								<p>Plataformas entretenido y divertido con colores chillones... no podras jugar solo una vez</p>
 								<a class=" btn btn-default" href="http://mispicaderos.com"><span class="glyphicon glyphicon-plus"> INFO</span></a>
 							</div>
 						</div>
 					</div>
 
 	    </div>
-        <div class="col-lg-3">
+        <div class="col-sm-4">
         			<div class="cuadro_intro_hover " style="background-color:#cccccc;">
 						<p style="text-align:center; margin-top:20px;">
-							<img src="http://placehold.it/300x330" class="img-responsive" alt="">
+							<img src="img/mariowi.jpg" class="img-responsive" alt="">
 						</p>
 						<div class="caption">
 							<div class="blur"></div>
 							<div class="caption-text">
-								<h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">THIS IS H3</h3>
-								<p>Loren ipsum dolor si amet ipsum dolor si amet ipsum dolor...</p>
-								<a class=" btn btn-default" href="http://mispicaderos.com"><span class="glyphicon glyphicon-plus"> INFO</span></a>
-							</div>
-						</div>
-					</div>
-
-	    </div>
-        <div class="col-lg-3">
-        			<div class="cuadro_intro_hover " style="background-color:#cccccc;">
-						<p style="text-align:center; margin-top:20px;">
-							<img src="http://placehold.it/1000x330" class="img-responsive" alt="">
-						</p>
-						<div class="caption">
-							<div class="blur"></div>
-							<div class="caption-text">
-								<h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">THIS IS H3</h3>
-								<p>Loren ipsum dolor si amet ipsum dolor si amet ipsum dolor...</p>
+								<h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">Markio-ui</h3>
+								<p>¿Hace falta decir algo mas? Descargalo YA!</p>
 								<a class=" btn btn-default" href="http://placesforlove.com"><span class="glyphicon glyphicon-plus"> INFO</span></a>
 							</div>
 						</div>
 					</div>
-
-	    </div>
-    </div>
-</div>
-
+	               </div>
+               </div>
+           </div>
+       </div>
 
 </div>
 <br><br><br>
 <div class="container">
     <div class="row">
-    	<div class="col-lg-3">
+    	<div class="col-lg-4">
     				<div class="cuadro_intro_hover " style="background-color:#cccccc;">
 						<p style="text-align:center; margin-top:20px;">
-							<img src="http://trovacamporella.com/img/trovacamporella-fiat500.png" class="img-responsive" alt="">
+							<img src="img/vv.jpg" class="img-responsive" alt="">
 						</p>
 						<div class="caption">
 							<div class="blur"></div>
 							<div class="caption-text">
-								<h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">THIS IS H3</h3>
-								<p>Loren ipsum dolor si amet ipsum dolor si amet ipsum dolor...</p>
+								<h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">vvvvv</h3>
+								<p>Juego de plataformas que burla las leyes de la gravedad... divertidisimo</p>
 								<a class=" btn btn-default" href="http://trovacamporella.com"><span class="glyphicon glyphicon-plus"> INFO</span></a>
 							</div>
 						</div>
 					</div>
 
 	    </div>
-        <div class="col-lg-3">
+        <div class="col-lg-4">
         			<div class="cuadro_intro_hover " style="background-color:#cccccc;">
 						<p style="text-align:center; margin-top:20px;">
-							<img src="http://placehold.it/500x330" class="img-responsive" alt="">
+							<img src="img/pong.jpg" class="img-responsive" alt="">
 						</p>
 						<div class="caption">
 							<div class="blur"></div>
 							<div class="caption-text">
-								<h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">THIS IS H3</h3>
+								<h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">PONG 3D</h3>
 								<p>Loren ipsum dolor si amet ipsum dolor si amet ipsum dolor...</p>
 								<a class=" btn btn-default" href="http://mispicaderos.com"><span class="glyphicon glyphicon-plus"> INFO</span></a>
 							</div>
 						</div>
 					</div>
-
 	    </div>
-        <div class="col-lg-3">
+        <div class="col-lg-4">
         			<div class="cuadro_intro_hover " style="background-color:#cccccc;">
 						<p style="text-align:center; margin-top:20px;">
-							<img src="http://placehold.it/300x330" class="img-responsive" alt="">
+							<img src="img/snake.jpg" class="img-responsive" alt="">
 						</p>
 						<div class="caption">
 							<div class="blur"></div>
 							<div class="caption-text">
-								<h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">THIS IS H3</h3>
-								<p>Loren ipsum dolor si amet ipsum dolor si amet ipsum dolor...</p>
+								<h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">SNAKE 3D</h3>
+								<p>Divertido juego que innova el estilo snake de los 80's con una vision 3D</p>
 								<a class=" btn btn-default" href="http://mispicaderos.com"><span class="glyphicon glyphicon-plus"> INFO</span></a>
 							</div>
 						</div>
 					</div>
-
-	    </div>
-        <div class="col-lg-3">
-        			<div class="cuadro_intro_hover " style="background-color:#cccccc;">
-						<p style="text-align:center; margin-top:20px;">
-							<img src="http://placehold.it/1000x330" class="img-responsive" alt="">
-						</p>
-						<div class="caption">
-							<div class="blur"></div>
-							<div class="caption-text">
-								<h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">THIS IS H3</h3>
-								<p>Loren ipsum dolor si amet ipsum dolor si amet ipsum dolor...</p>
-								<a class=" btn btn-default" href="http://placesforlove.com"><span class="glyphicon glyphicon-plus"> INFO</span></a>
-							</div>
-						</div>
-					</div>
-
 	    </div>
     </div>
 </div>
-
-
-</div>
-
-
-
-
-
-
+<br><br><br><br><br><br><br>
 <!-- botones sociales -->
-<div class="container">
+<div class="container" style="color:brown">
     <div class="row">
         <hr>
-
         <div class="text-center">
-        <h4>Social Network</h4>
+        <h2 style="text-align:center"><strong>Buscanos en las red</strong></h2>
+        <br><br>
             <!-- just add href= for your links, like this: -->
             <a href="http://facebook.com" class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
             <a class="btn btn-social-icon btn-dropbox"><i class="fa fa-dropbox"></i></a>
@@ -363,13 +296,6 @@ include "sesion_usuario.php"
           <p>facebook crack the movie advertisment code:what it means for you <span>August 3,2015</span></p>
         </div>
       </div>
-      <div class="col-md-3 col-sm-6 paddingtop-bottom">
-        <div class="fb-page" data-href="https://www.facebook.com/facebook" data-tabs="timeline" data-height="300" data-small-header="false" style="margin-bottom:15px;" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-          <div class="fb-xfbml-parse-ignore">
-            <blockquote cite="https://www.facebook.com/facebook"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </footer>
@@ -392,11 +318,12 @@ include "sesion_usuario.php"
 </div>
 
 
+
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-        <!-- usar siempre la última versión de jquery de los servidores de google. Yo recomiendo esta -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <script type="text/javascript" src="Recursillos/bootstrap/js/bootstrap.js"></script>
-        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="jquery.min.js"></script>
+         <!-- usar siempre la última versión de jquery de los servidores de google. Yo recomiendo esta -->
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+         <script type="text/javascript" src="Recursillos/bootstrap/js/bootstrap.js"></script>
+         <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+         <script type="text/javascript" src="jquery.min.js"></script>
     </body>
 </html>

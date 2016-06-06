@@ -4,6 +4,17 @@
         <br><br><br>
         <div class="container">
             <br><br><br><br>
+            <!--
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for=""><h3>Cantidad a donar</h3></label>
+                        <input type="number" max="100" min="1">
+                    </div>
+                </div>
+            </div>
+        -->
+            <br><br><br><br>
             <div class="row">
                 <!-- You can make it whatever width you want. I'm making it full width
                      on <= small devices and 4/12 page width on >= medium devices -->
@@ -19,63 +30,31 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form role="form" id="payment-form">
+                        <form role="form"  method="post" action="php/agregarDonacion.php">
+                            <!-- id="payment-form" -->
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label for="cardNumber">Numero de tarjeta</label>
-                                        <div class="input-group">
-                                            <input
-                                                type="tel"
-                                                class="form-control"
-                                                name="cardNumber"
-                                                placeholder="Valid Card Number"
-                                                autocomplete="cc-number"
-                                                required autofocus
-                                            />
-                                            <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                        </div>
-                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Cantidad</label><br>
+                                        <input type="number" name="cantidad" value="" min="1" max="100">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-7 col-md-7">
-                                    <div class="form-group">
-                                        <label for="cardExpiry"><span class="hidden-xs">Fecha
-                                        </span><span class="visible-xs-inline">EXP</span>Caducidad</label>
-                                        <input
-                                            type="tel"
-                                            class="form-control"
-                                            name="cardExpiry"
-                                            placeholder="MM / YY"
-                                            autocomplete="cc-exp"
-                                            required
-                                        />
-                                    </div>
+
                                 </div>
                                 <div class="col-xs-5 col-md-5 pull-right">
-                                    <div class="form-group">
-                                        <label for="cardCVC">Codigo</label>
-                                        <input
-                                            type="tel"
-                                            class="form-control"
-                                            name="cardCVC"
-                                            placeholder="CVC"
-                                            autocomplete="cc-csc"
-                                            required
-                                        />
-                                    </div>
+
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <button class="btn btn-success btn-lg btn-block" type="submit">Donar</button>
-                                </div>
-                            </div>
-                            <div class="row" style="display:none;">
-                                <div class="col-xs-12">
-                                    <p class="payment-errors" style=""></p>
+                                    <input class="btn btn-success btn-lg" type="submit" value="Donar">
                                 </div>
                             </div>
                         </form>
@@ -90,6 +69,10 @@
             <div class="col-md-4">
                 <img class="imgdonar" src="img/donar.jpg" alt="" />
             </div>
+        </div>
+        </div>
+        <div class="row">
+
             <div class="col-xs-12 col-md-8" class="razones" style="font-size: 12pt; line-height: 2em;">
                 <p><h1><strong>5 Razones por las que Donar:</strong></h1>
                     <ul>
@@ -102,6 +85,7 @@
                 </p>
             </div>
         </div>
+
     </div>
 
 
@@ -126,10 +110,11 @@
                  </div> <!-- /.row -->
                 </div>
                  <br><br><br>
+
                   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
                  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
                  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/1.2.3/jquery.payment.min.js"></script>
                  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
                  <script type="text/javascript" src="js/donar.js"></script>
 
-    <?php include("footer.php") ?>
+<?php include("footer.php") ?>

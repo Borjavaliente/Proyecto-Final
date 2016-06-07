@@ -1,6 +1,7 @@
 <?php
+    require_once("usuarios.php");
 
-    class Aplicaciones
+    class Aplicaciones extends Usuarios
     {
         private $idApp;
         private $nombre;
@@ -10,13 +11,17 @@
         private $fechaLanz;
         private $disponible;
         private $precio;
-        private $aprobado;
         private $descripcion;
         private $autor;
+        private $portada;
+        private $imagen;
+        private $fichero;
 
-        public function __construct($idApp=null,$nombre=null,$version=null,$tipo=null,$categoria=null,$fechaLanz=null,$disponible=null,$precio=null,$aprobado=null,$descripcion=null,$autor=null)
+        public function __construct($idApp=null,$idUsuario=null,$nombre=null,$version=null,$tipo=null,$categoria=null,$fechaLanz=null,$disponible=null,$precio=null,$descripcion=null,$autor=null,$portada=null,$imagen=null,$fichero=null)
         {
+            parent::__construct();
             $this->idApp = $idApp;
+            $this->idUsuario = $idUsuario;
             $this->nombre = $nombre;
             $this->version = $version;
             $this->tipo = $tipo;
@@ -24,9 +29,11 @@
             $this->fechaLanz = $fechaLanz;
             $this->disponible = $disponible;
             $this->precio = $precio;
-            $this->aprobado = $aprobado;
             $this->descripcion = $descripcion;
             $this->autor = $autor;
+            $this->portada = $portada;
+            $this->imagen = $imagen;
+            $this->fichero = $fichero;
         }
 
         public function getIdApp()
@@ -37,6 +44,16 @@
         public function setIdApp($idApp)
         {
             $this->idApp = $idApp;
+        }
+
+        public function getidUsuario()
+        {
+            return $this->idUsuario;
+        }
+
+        public function setidUsuario($idUsuario)
+        {
+            $this->idUsuario = $idUsuario;
         }
 
         public function getnombre()
@@ -109,15 +126,7 @@
             $this->precio = $precio;
         }
 
-        public function getaprobado()
-        {
-            return $this->aprobado;
-        }
 
-        public function setaprobado($aprobado)
-        {
-            $this->aprobado = $aprobado;
-        }
 
         public function getdescripcion()
         {
@@ -139,15 +148,43 @@
             $this->autor = $autor;
         }
 
-
-
-        public function agregarAplicacion($idApp,$nombre,$version,$tipo,$categoria,$fechaLanz,$disponible,$precio,$aprobado,$descripcion,$autor)
+        public function getportada()
         {
-            $agregar = "'$this->idApp','$this->nombre','$this->version','$this->tipo','$this->categoria','$this->fechaLanz','$this->disponible','$this->precio','$this->aprobado','$this->descripcion','$this->autor'";
+            return $this->portada;
+        }
+
+        public function setportada($portada)
+        {
+            $this->portada = $portada;
+        }
+
+        public function getimagen()
+        {
+            return $this->imagen;
+        }
+
+        public function setimagen($imagen)
+        {
+             $this->imagen = $imagen;
+        }
+
+        public function getfichero()
+        {
+            return $this->fichero;
+        }
+
+        public function setfichero($fichero)
+        {
+            $this->fichero = $fichero;
+        }
 
 
-            //Ejecuto la consulta para insertar en la talba usuarios al nuevo usaurio
-            mysql_query("insert into aplicaciones values($agregar)");
+        public function agregarAplicacion($idApp,$idUsuario,$nombre,$version,$tipo,$categoria,$fechaLanz,$disponible,$precio,$descripcion,$autor,$portada,$imagen,$fichero)
+        {
+            $agregar = "'$this->idApp','$this->idUsuario','$this->nombre','$this->version','$this->tipo','$this->categoria','$this->fechaLanz','$this->disponible','$this->precio','$this->descripcion','$this->autor','$this->portada','$this->imagen','$this->fichero'";
+
+            $consulta = "insert into aplicaciones values($agregar)";
+            mysql_query($consulta);
 
         }
 
@@ -156,6 +193,12 @@
             $consulta = "delete from aplicaciones where idApp='$this->idApp'";
             mysql_query($consulta);
 
+        }
+
+        public function activarAplicacion($idApp)
+        {
+            $consulta = "update aplicaciones set disponible='Si' where idApp='$this->idApp'";
+            mysql_query($consulta);
         }
 
         public function bloquearAplicacion($idApp)
@@ -168,6 +211,39 @@
         {
             $consulta = "select descripcion from aplicaciones where idApp='$this->idApp'";
             $resultado = mysql_query($consulta);
+        }
+
+        public function mostrarAplicacion($nombre,$descripcion,$portada)
+        {
+            $consulta = "SELECT nombre,descripcion,portada FROM aplicaciones";
+            $resultado = mysql_query($consulta);
+            while($fila = mysql_fetch_row($resultado))
+            {
+                $this->nombre = $fila[0];
+                $this->descripcion = $fila[1];
+                $this->portada = $fila[2];
+
+        echo '
+        <div class="col-md-4">
+                <div class="cuadro_intro_hover " style="background-color:#cccccc">
+                    <p style="text-align:center; margin-top:20px;">
+
+                        <img src="'.$this->portada.'" class="img-responsive" alt="">
+                    </p>
+                    <div class="caption">
+                        <div class="blur"></div>
+                        <div class="caption-text">
+                            <h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">'.$this->nombre.'</h3>
+                            <p>'.$this->descripcion.'</p>
+                            <a class=" btn btn-default" href="producto.php"><span class="glyphicon glyphicon-plus">Ver mas</span></a>
+
+                        </div>
+                    </div>
+                </div>
+              </div>
+        ';
+            }
+
         }
 
     }

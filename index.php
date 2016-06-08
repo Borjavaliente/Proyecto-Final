@@ -34,7 +34,7 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" action="php/loginValidar.php" method="post" role="form" style="display: block;">
+								<form id="login-form" action="php/validarLogin.php" method="post" role="form" style="display: block;">
 									<div class="form-group">
 										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Usuario" value="">
 									</div>
@@ -63,7 +63,7 @@
 									</div>
 								</form>
                                 <!-- FORMULARIO PARA AGREGAR USUARIOS -->
-								<form id="register-form" action="usuarioagregar.php" method="post" role="form" style="display: none;">
+								<form id="register-form" action="agregarUsuario.php" method="post" role="form" style="display: none;">
 									<div class="form-group">
 										<input type="text" name="nick" id="username" tabindex="1" class="form-control" placeholder="Nick" value="" required="Campo Obligatorio">
 									</div>

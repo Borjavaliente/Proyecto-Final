@@ -1,5 +1,5 @@
 <?php
-    require_once("class/conexion.php");
+    //require_once("class/conexion.php");
     require_once("class/aplicaciones.php");
     require_once("header.php");
 
@@ -45,18 +45,20 @@
 
 <div class="container" style="">
     <h1 style="text-align:center"><strong>Aplicaciones</strong></h1>
+    <br><br><br>
     <div class="row">
         <?php
 
-            @$nombre = $_POST['nombre'];
-            @$descripcion = $_POST['descripcion'];
-            @$ruta = $_POST['ruta'];
-
             Conexion::conectar();
+            $nombre = null;
+            $descripcion = null;
+            $ruta = null;
             $instAplicacion = new Aplicaciones($nombre,$descripcion,$ruta);
             $instAplicacion->mostrarAplicacion($nombre,$descripcion,$ruta);
             Conexion::desconectar();
-            
+
+
+
          ?>
     </div>
 

@@ -79,7 +79,7 @@
         	</div>
         </div>
         <br><br><br>
-
+        c
         <div class="container">
           <div class="row">
             <div class="span12">
@@ -147,7 +147,6 @@
                 </div>
         	</div>
         </div>
-
         <br><br><br>
         <!-- botones sociales -->
         <div class="container">

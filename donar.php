@@ -35,40 +35,46 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="control-group">
-                                        <label class="control-label">Cantidad</label><br>
-                                        <input type="number" name="cantidad" value="" min="1" max="100">
+                                        <label class="control-label"><center>Cantidad</center></label><br>
+                                        <input class="form-control input-md" type="number" name="cantidad" value="" min="1" max="100">
+                                        <br>
+                                    </div>
                                 </div>
-                            </div>
+                                <br>
+                                <div class="form-group">
+                                  <label class="col-md-control-label" for="caducidad"><center>Fecha de caducidad</center></label>
+                                  <br>
+                                  <div class="col-md-12">
+                                  <center><input id="caducidad" name="caducidad" type="text" placeholder="XX/XX" class="form-control input-md" required=""></center>
+                                  </div>
+                                </div>
+                                <br><br>
+                                <div class="form-group">
+                                  <label class="col-md-control-label" for="caducidad"><center>Ultimos 6 digitos del Nº de tarjeta</center></label>
+                                  <br>
+                                  <div class="col-md-12">
+                                  <center><input id="caducidad" name="caducidad" type="text" placeholder="00-0000" class="form-control input-md" required=""></center>
+                                  </div>
+                                </div>
+                                <br>
                             <div class="row">
                                 <div class="col-xs-12">
-
+                                    <br><br><br>
+                                    <center><input class="btn btn-success btn-lg" type="submit" value="Donar"></center>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-xs-7 col-md-7">
-
-                                </div>
-                                <div class="col-xs-5 col-md-5 pull-right">
-
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <input class="btn btn-success btn-lg" type="submit" value="Donar">
-                                </div>
-                            </div>
+                            <br>    
                         </form>
                     </div>
                 </div>
                 <!-- CREDIT CARD FORM ENDS HERE -->
+            </div>
+        </div>
+        <div class="col-md-2">
 
-            </div>
-            <div class="col-md-2">
-
-            </div>
-            <div class="col-md-4">
-                <img class="imgdonar" src="img/donar.jpg" alt="" />
-            </div>
+        </div>
+        <div class="col-md-4">
+            <img class="imgdonar" src="img/donar.jpg" alt="" />
         </div>
         </div>
         <div class="row">

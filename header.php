@@ -1,4 +1,16 @@
-<?php //include("php/agregarNombre.php") ?>
+<?php
+
+    /* COMPROBAMOS QUE EL USUARIO HA INICIADO SESION CON SU CONTRASEÑA */
+    include("class/conexion.php");
+    @session_start();
+    if(!isset($_SESSION['nick'])){
+        header('location:index.php');
+    }
+    if (isset($_POST['nick'])){
+        $_SESSION['nick']=$_POST['nick'];
+    }
+
+?>
 <html background="img/fondo2.jpg">
     <head>
         <meta charset="utf-8">
@@ -26,7 +38,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="webuser.php">Inicio</a></li>
-                        <li><a href="noticias.php">Noticias</a></li>
+                        <li><a href="vernoticias.php">Noticias</a></li>
                          <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Explora
                             <span class="caret"></span>
@@ -36,6 +48,7 @@
                                 <li><a href="acercade.php">Acerca de...</a></li>
                             </ul>
                          </li>
+                         <li><a href="subirApp.php">Subir App</a></li>
                          <li><a href="contacto.php">Contacto</a></li>
                      </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -52,14 +65,14 @@
                                             <div class="col-lg-4">
                                                 <p class="text-center">
                                                     <!--class="glyphicon glyphicon-user icon-size"-->
-                                                    <span> <?php include("php/muestraFoto.php")  ?></span>
+                                                    <span> <?php include("php/mostrarFotoUsuario.php") ?></span>
                                                 </p>
                                             </div>
                                             <div class="col-lg-8">
-                                                <p class="text-left"><strong><?php include("php/muestraNombre.php");?></strong></p>
-                                                <p class="text-left small"><?php include("php/muestraCorreo.php");?></p>
+                                                <p class="text-left"><strong><?php include("php/mostrarNombreUsuario.php");?></strong></p>
+                                                <p class="text-left small"><?php include("php/mostrarCorreoUsuario.php");?></p>
                                                 <p class="text-left">
-                                                    <a href="#" class="btn btn-primary btn-block btn-sm">Actualizar Datos</a>
+                                                    <a href="actualiza.php" class="btn btn-primary btn-block btn-sm">Actualizar Datos</a>
                                                 </p>
                                             </div>
                                         </div>

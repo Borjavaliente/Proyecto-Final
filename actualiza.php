@@ -29,7 +29,7 @@
                        </div>
                        <div class="form-group">
                          <label for="exampleInputEmail1">Fecha de Nacimiento</label>
-                         <input type="text" name="fechaNac" class="form-control" id="exampleInputEmail1" placeholder="Introduzca nuevo Fecha" required="Campo Obligatorio">
+                         <input type="date" name="fechaNac" class="form-control" id="exampleInputEmail1" placeholder="Introduzca nuevo Fecha" required="Campo Obligatorio">
                        </div>
                        <div class="form-group">
                          <label for="exampleInputEmail1">Direccon de correo</label>

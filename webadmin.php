@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <?php
-    //include "sesion_admin.php";
+    /* COMPROBAMOS QUE EL USUARIO ES ADMIN Y QUE HA INICADO SESION  **/
+    session_start();
+    if($_SESSION['rol']!='admin'){
+        header('location:index.php');
+    }
+    if (isset($_POST['nick'])){
+        $_SESSION['nick']=$_POST['nick'];
+    }
  ?>
 <html>
     <head>
@@ -13,7 +20,7 @@
         <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css" media="screen" title="no title" charset="utf-8">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
-    <body>
+    <body background="img/fondoadmin.jpg" width="100%" height="100%">
         <div class="container">
             <div class="row">
                             <div class="col-lg-12 titulin">
@@ -26,38 +33,41 @@
                                 </div>
                               </div>
                         </div>
+
                     </div>
                 </div>
         <div class="col-md-3">
+            <a href="cerrarsesion.php" class="btn btn-danger btn-block" style="width:320px">Cerrar Sesion</a>
             <ul class="nav nav-pills nav-stacked admin-menu">
-                <li><a class="active" href="#" data-target-id="consulta">Busqueda de Aplicaciones</a></li>
                 <li><a href="" data-target-id="blog">Gestion del Blog</a></li>
                 <li><a href="" data-target-id="ofertas">Gestion de ofertas</a></li>
                 <li><a href="" data-target-id="producto">Gestion de producto</a></li>
                 <li><a href="" data-target-id="usuario">Gestion de usuarios</a></li>
+                <li>
+                    <div id="custom-search-input">
+                         <div class="input-group col-xs-12">
+                             <input type="text" class="search-query form-control" placeholder="Search"/>
+                                 <span class="input-group-btn">
+                                     <button class="btn btn-danger" type="submit">
+                                         <span class="glyphicon glyphicon-search"></span>
+                                     </button>
+                                 </span>
+                             </div>
+                     </div>
+                </li>
             </ul>
+
         </div>
         <div class="col-md-9 admin-content" id="consulta">
             <div class="container">
                 <div class="row">
-                    <br><br>
-                    <center><h2>Panel de Busqueda</h2></center><br><br><br>
-                       <div id="custom-search-input">
-                                        <div class="input-group col-xs-12">
-                                            <input type="text" class="search-query form-control" placeholder="Search"/>
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-danger" type="button">
-                                                    <span class="glyphicon glyphicon-search"></span>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </div>
+
                                 </div>
                           </div>
-                          <!-- Buscador de Ajax -->
+
                     </div>
         <div class="col-md-9 admin-content" id="blog">
-            <h1 style="text-align:center">Agregar Noticia</h1><br><br>
+            <h1 style="text-align:center">Noticias</h1><br><br>
             <div class="container">
                 <div>
                     <section class="content">
@@ -67,6 +77,11 @@
                                     <div class="row">
                                         <div class="col-xs-9 col-md-9 form-group">
                                             <input class="form-control" id="name" name="titulo" placeholder="Inserte el titulo del post" type="text" required autofocus /><br>
+                                        </div>
+                                        <div class="col-xs-9 col-md-9 form-group">
+                                            <label for="">Portada</label>
+                                            <br>
+                                            <input class="form-control" id="name" name="portada" placeholder="Inserte una portada" type="file"  autofocus /><br>
                                         </div>
                                     </div>
                                     <textarea class="form-control" id="message" name="mensaje" placeholder="Escriba aqui el mensaje" rows="8"></textarea>
@@ -89,24 +104,28 @@
                 </div>
         <div class="col-md-9 admin-content" id="ofertas">
             <br><br><br>
-            <form class="" action="" method="post">
+            <form class="" action="php/agregarOfertas.php" method="post">
                 <table class="table table-bordered">
                     <tr>
-                        <td colspan="4" style="text-align:center"><strong>Gestion de Oferta</strong></td>
+                        <td colspan="4" style="text-align:center"><strong>Ofertas</strong></td>
                     </tr>
                     <tr>
-                        <td>Fecha de Lanzamiento</td><td><input class="form-control input-medium" type="date" name="fechalanz" required=""/></td>
-                        <td>Fecha de Finalizacion</td><td><input class="form-control input-medium" type="date" name="fechafinal" required=""/></td>
+                        <td>Fecha de Lanzamiento</td><td><input class="form-control input-medium" type="date" name="fechaInicio" required=""/></td>
+                        <td>Fecha de Finalizacion</td><td><input class="form-control input-medium" type="date" name="fechaFin" required=""/></td>
+                    </tr>
+                    <tr>
+                        <td>Aplicacion</td><td><input type="number"  value="Aplicacion" class="form-control input-medium" name="app" ></td>
+                        <td>Porcentaje</td><td><input type="number"  value="Descuento" class="form-control input-medium" name="porcentaje" ></td>
                     </tr>
                     <tr>
                         <td colspan="4" style="text-align:center">
-                        <input type="button" class="btn btn-success btn-lg btn-block" value="Agregar"/>  
+                        <input type="submit" class="btn btn-success btn-lg btn-block" value="Agregar"/>  
                         </td>
                     </tr>
                 </table>
             </form>
             <br><br><br>
-            <form class="" action="" method="post">
+            <form class="" action="php/eliminarOfertas.php" method="post">
                 <table class="table table-bordered">
                   <tr>
                       <td colspan="4" style="text-align:center"><strong>Eliminar Oferta</strong></td>
@@ -118,11 +137,11 @@
                     <td style="text-align:center">Identificador de Oferta</td>
                   </tr>
                   <tr>
-                    <td colspan="4"><input type="text" class="form-control" name="idofelim" value="Abhishek Gorlagunta"/></td>
+                    <td colspan="4"><input type="number" class="form-control" name="idoferta" value="Abhishek Gorlagunta"/></td>
                   </tr>
                   <tr>
                     <td colspan="4" style="text-align:center">
-                    <input type="button" class="btn btn-danger btn-lg btn-block" value="Eliminar"/>  
+                    <input type="submit" class="btn btn-danger btn-lg btn-block" value="Eliminar"/>  
                     </td>
                   </tr>
                 </table>
@@ -130,142 +149,163 @@
         </div>
         <div class="col-md-9 admin-content" id="producto">
           <!-- Posible snipp  http://bootsnipp.com/snippets/featured/table-with-users -->
-          <form class="" action="php/aplicacionAgregar.php" method="post">
+          <form class="" action="php/agregarAplicacion.php" method="post">
             <table class="table table-bordered">
               <tr>
-                  <td colspan="4" style="text-align:center"><strong>Agregar Aplicacion</strong></td>
+                  <td colspan="4" style="text-align:center"><strong>Aplicaciones</strong></td>
               </tr>
                 <tr>
-                    <td>Nombre</td><td><input type="text" name="nombreapp" class="form-control input-medium" value="Abhishek Gorlagunta"/></td>
-                    <td>Precio</td><td><input class="form-control input-medium" name="precioapp" type="number" value="Bachelors"/></td>
+                    <td>Nombre</td><td><input type="text" name="nombre" class="form-control input-medium" value=""/></td>
+                    <td>Version</td><td><input class="form-control input-medium" name="version" type="text" value=""/></td>
                 </tr>
                 <tr>
-                    <td>Categoria</td><td><input type="text" class="form-control input-medium" name="categoriaapp" value="Abhishek Gorlagunta"/></td>
-                    <td>version</td><td><input class="form-control input-medium" type="number" name="versionapp" value="Bachelors"/></td>
+                    <td>Tipo</td><td><input type="text" name="tipo" class="form-control input-medium" value="Aplicacion"/></td>
+                    <td>Categoria</td><td><input class="form-control input-medium" name="categoria" type="text" value=""/></td>
                 </tr>
                 <tr>
-                  <td colspan="4" style="text-align:center">
-                    Descripcion
-                  </td>
+                    <td>Disponible</td><td><input type="text" class="form-control input-medium" name="disponible" value=""/></td>
+                    <td>Precio</td><td><input class="form-control input-medium" type="number" name="precio" value=""/></td>
                 </tr>
                 <tr>
-                  <td colspan="4">
-                    <input type="text" class="form-control" value="Abhishek Gorlagunta"/>
-                  </td>
+                    <td>Descripcion</td><td><input type="text" class="form-control input-medium" name="descripcion" value=""/></td>
+                    <td>Autor</td><td><input type="text" class="form-control input-medium" name="autor" value=""/></td>
+                </tr>
+                <tr>
+                    <td>Portada</td><td><input type="file" class="form-control input-medium" name="portada" value=""/></td>
+                    <td>Imagen</td><td><input type="file" class="form-control input-medium" name="imagen" value=""/></td>
+                </tr>
+                <tr>
+                    <td>Fichero</td><td colspan="3"><input type="file" class="form-control input-medium" name="fichero" value=""/></td>
                 </tr>
                 <tr>
                     <td colspan="4" style="text-align:center">
-                    <input type="button" class="btn btn-success btn-lg btn-block" value="Subir App"/>  
+                    <input type="submit" class="btn btn-success btn-lg btn-block" value="Subir App"/>  
                     </td>
                 </tr>
             </table>
           </form>
           <br><br><br>
-          <form class="" action="php/aplicacionBloquear.php" method="post">
+          <form class="" action="php/activarAplicacion.php" method="post">
             <table class="table table-bordered">
               <tr>
-                  <td colspan="4" style="text-align:center"><strong>Bloquear Aplicacion</strong></td>
+                  <td colspan="4" style="text-align:center"><strong>Activar Aplicacion</strong></td>
               </tr>
               <tr>
-                <td colspan="">Identificador</td><td colspan="3"><input type="text" name="idappbloq" class="form-control"></td>
+                <td colspan="">Identificador</td><td colspan="3"><input type="number" name="idapp" class="form-control"></td>
               </tr>
               <tr>
                   <td colspan="4" style="text-align:center">
-                  <input type="button" class="btn btn-warning btn-lg btn-block" value="Bloquear"/>  
+                  <input type="submit" class="btn btn-primary btn-lg btn-block" value="Activar"/>  
                   </td>
               </tr>
             </table>
           </form>
           <br><br><br>
-          <form class="" action="php/aplicacionEliminar.php" method="post">
+          <form class="" action="php/bloquearAplicacion.php" method="post">
+            <table class="table table-bordered">
+              <tr>
+                  <td colspan="4" style="text-align:center"><strong>Bloquear Aplicacion</strong></td>
+              </tr>
+              <tr>
+                <td colspan="">Identificador</td><td colspan="3"><input type="number" name="idapp" class="form-control"></td>
+              </tr>
+              <tr>
+                  <td colspan="4" style="text-align:center">
+                  <input type="submit" class="btn btn-warning btn-lg btn-block" value="Bloquear"/>  
+                  </td>
+              </tr>
+            </table>
+          </form>
+          <br><br><br>
+          <form class="" action="php/eliminarAplicacion.php" method="post">
             <table class="table table-bordered">
               <tr>
                   <td colspan="4" style="text-align:center"><strong>Eliminar Aplicacion</strong></td>
               </tr>
               <tr>
-                <td colspan="">Identificador</td><td colspan="3"><input type="text" name="idappelim" class="form-control"></td>
+                <td colspan="">Identificador</td><td colspan="3"><input type="number" name="idapp" class="form-control"></td>
               </tr>
               <tr>
                   <td colspan="4" style="text-align:center">
-                  <input type="button" class="btn btn-danger btn-lg btn-block" value="Eliminar"/>  
+                  <input type="submit" class="btn btn-danger btn-lg btn-block" value="Eliminar"/>  
                   </td>
               </tr>
             </table>
           </form>
         </div>
         <div class="col-md-9 admin-content" id="usuario">
-            <form class="" action="" method="post">
+            <form class="" action="php/agregarUsuario.php" method="post">
                 <table class="table table-bordered">
                     <tr>
-                        <td colspan="4" style="text-align:center"><strong>Alta de usuario</strong></td>
+                        <td colspan="4" style="text-align:center"><strong>Usuarios</strong></td>
                     </tr>
                     <tr>
-                        <td>Nombre</td><td><input type="text" class="form-control input-medium" name="nombreusu" value="Abhishek Gorlagunta"/></td>
-                        <td>Apellido</td><td><input class="form-control input-medium" type="text" name="apellusu" value="Bachelors"/></td>
+                        <td>Nombre</td><td><input type="text" class="form-control input-medium" name="nombre" value="Nombre"/></td>
+                        <td>Apellido</td><td><input class="form-control input-medium" type="text" name="apellidos" value="Apellidos"/></td>
                     </tr>
                     <tr>
-                        <td>Nick</td><td><input class="form-control input-medium" type="text" value="3" name="nickusu" /></td>
-                        <td>Rol</td><td><input class="form-control input-medium" type="text" value="IT Engineer 2" name="rolusu"/></td>
+                        <td>Nick</td><td><input class="form-control input-medium" type="text" name="nick" /></td>
+                        <td>Rol</td><td><input class="form-control input-medium" type="text"  name="rol"/></td>
                     </tr>
                     <tr>
-                        <td>Fecha de Nacimiento</td><td><input class="form-control input-medium" type="date" value="P06" name="fechillausu"/></td>
-                        <td>Correo</td><td><input class="form-control input-medium" type="text" value="1" name="correousu"/></td>
+                        <td>Fecha de Nacimiento</td><td><input class="form-control input-medium" type="date" value="P06" name="fecha"/></td>
+                        <td>Correo</td><td><input class="form-control input-medium" type="text" value="1" name="correo"/></td>
                     </tr>
                     <tr>
-                        <td>Password</td><td><input class="form-control input-medium" type="password" value="P06" name="passusu"/></td>
-                        <td>Foto de perfil</td><td><input class="form-control input-medium" type="file" value="P06" name="imgusu"/></td>
+                        <td>Password</td><td><input class="form-control input-medium" type="password" value="P06" name="pass"/></td>
+                        <td>Foto de perfil</td><td><input class="form-control input-medium" type="file" value="P06" name="imagen"/></td>
                     </tr>
                     <tr>
                         <td colspan="4" style="text-align:center">
-                        <input type="button" class="btn btn-success btn-lg btn-block" value="Dar de Alta"/>  
+                        <input type="submit" class="btn btn-success btn-lg btn-block" value="Dar de Alta"/>  
                         </td>
                     </tr>
                 </table>
             </form>
             <br><br>
-            <form class="" action="php/usuarioBaja.php" method="post">
+            <form class="" action="php/bajaUsuario.php" method="post">
                 <table class="table table-bordered">
                     <tr>
                         <td colspan="4" style="text-align:center"><strong>Baja de usuario</strong></td>
                     </tr>
                     <tr>
-                        <td>Nick</td><td><input class="form-control input-medium" type="text" value="Bachelors" name="idbajausu"/></td>
+                        <td>Usuario</td><td><input class="form-control input-medium" type="number" value="" name="idusuario"/></td>
                     </tr>
                     <tr>
                         <td colspan="4" style="text-align:center">
-                        <input type="button" class="btn btn-warning btn-lg btn-block" value="Dar de Baja"/>  
+                        <input type="submit" class="btn btn-warning btn-lg btn-block" value="Dar de Baja"/>  
                         </td>
                     </tr>
                 </table>
             </form>
             <br><br>
-            <form class="" action="php/usuarioBloquear.php" method="post">
+            <form class="" action="php/bloquearUsuario.php" method="post">
                 <table class="table table-bordered">
                     <tr>
                         <td colspan="4" style="text-align:center"><strong>Bloquear un usuario</strong></td>
                     </tr>
                     <tr>
-                        <td>Nick</td><td><input class="form-control input-medium" type="text" value="Bachelors" name="idbloqueousu" /></td>
+                        <td>Usuario</td><td><input class="form-control input-medium" type="number" value="Bachelors" name="idusuario" /></td>
                     </tr>
                     <tr>
                         <td colspan="4" style="text-align:center">
-                        <input type="button" class="btn btn-danger btn-lg btn-block" value="Bloquear"/>  
+                        <input type="submit" class="btn btn-danger btn-lg btn-block" value="Bloquear"/>  
                         </td>
                     </tr>
                 </table>
             </form>
             <br><br>
-            <form class="" action="php/usuarioDesbloquear.php" method="post">
+            <form class="" action="php/desbloquearUsuario.php" method="post">
                 <table class="table table-bordered">
                     <tr>
                         <td colspan="4" style="text-align:center"><strong>Desbloquear un usuario</strong></td>
                     </tr>
                     <tr>
-                        <td>Nick</td><td><input class="form-control input-medium" type="text" value="Bachelors" name="iddesbloqueousu"/></td>
+                        <td>Usuario</td><td><input class="form-control input-medium" type="text" value="Bachelors" name="idusuario"/></td>
                     </tr>
                     <tr>
                         <td colspan="4" style="text-align:center">
-                        <input type="button" class="btn btn-primary btn-lg btn-block" value="Desbloquear"/>  
+                        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Desbloquear"/>  
                         </td>
                     </tr>
                 </table>

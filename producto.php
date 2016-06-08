@@ -1,4 +1,7 @@
-<?php include("header.php") ?>
+<?php
+    include("header.php");
+    include("class/aplicaciones.php");
+?>
 <link rel="stylesheet" href="css/producto.css" media="screen" title="no title" charset="utf-8">
         <br><br><br><br>
         <!-- Descripcion del producto -->
@@ -6,17 +9,25 @@
             <div class="content-wrapper">
         		<div class="item-container">
         			<div class="container">
-        				<div class="col-md-12">
-        					<div class="product col-md-12 service-image-left">
-        						<img id="item-display" src="img/Indiana_heroes.jpg" width="1050" height="320" alt=""></img>
-        					</div>
-        				</div>
+                        <!-- IMAGEN DESCRIPTIVA DEL PRODUCTO -->
+                        <?php
+                        //@$idApp = $_GET['idApp'];
+                        Conexion::conectar();
+                        $idApp = $_GET['idApp'];
+                        $instPortada = new Aplicaciones($_GET['idApp']);
+                        $instPortada->mostrarPortadaCompra($_GET['idApp']);
+                        $_SESSION['idApp'] = $idApp; 
+                        Conexion::desconectar();
+                         ?>
+
+
         				<div class="col-md-11">
                             <br><br><br>
                             <center>
         					<div class="btn-group cart">
         						<button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-success center-block">Comprar</button>
         					</div>
+                            <!-- FORMULARIO EMERGENTE QUE SE ABRE CUANDO PULSAS EL BOTON COMPRAR  -->
                             <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                               <div class="modal-dialog">
                                <div class="modal-content">
@@ -26,20 +37,12 @@
                                    </div>
                                    <div class="modal-body">
                                         <!-- content goes here -->
-                                    <form method="POST" action="webuser_compra.php">
-                                          <div class="form-group">
-                                            <label for="exampleInputEmail1">Nick de usuario</label>
-                                            <input type="text" name="nick" class="form-control" id="exampleInputEmail1" placeholder="Introduzca nuevo Nick" required="Campo Obligatorio">
-                                          </div>
-                                          <div class="form-group">
-                                            <label for="exampleInputEmail1">Direccon de correo</label>
-                                            <input type="email" name="correo" class="form-control" id="exampleInputEmail1" placeholder="Nuevo email" required="Campo Obligatorio">
-                                          </div>
+                                    <form method="POST" action="php/webuserCompra.php">
                                           <div class="form-group">
                                             <label for="exampleInputPassword1">Password</label>
                                             <input type="password" name="pass" class="form-control" id="exampleInputPassword1" placeholder="Nuevo password" required="Campo Obligatorio">
                                           </div>
-                                          <center><button type="submit" class="btn btn-success">Validar</button>
+                                          <center><input type="submit" class="btn btn-success" value="Validar">
                                     </form>
                                    </div>
                                    <div class="modal-footer">
@@ -63,8 +66,7 @@
         			<div class="col-md-12 product-info">
         					<ul id="myTab" class="nav nav-tabs nav_tabs">
 
-        						<li class="active"><a href="#service-one" data-toggle="tab">DESCRIPCION</a></li>
-        						<li><a href="#service-two" data-toggle="tab">INFORMACION DE PRODUCTO</a></li>
+        						<li class="active"><a href="#service-one" data-toggle="tab">INFORMACION DE PRODUCTO</a></li>
                                 <li><a href="#service-tree" data-toggle="tab">COMMENTARIOS</a></li>
 
         					</ul>
@@ -72,33 +74,16 @@
         						<div class="tab-pane fade in active" id="service-one">
         							<section class="container product-info">
                                         <p>
-                                            lskflkfnslkf <br>
-                                            lskflkfnslkf <br>
-                                            lskflkfnslkf <br>
-                                            lskflkfnslkf <br>
-                                            lskflkfnslkf <br>
-                                            lskflkfnslkf <br>
-                                            lskflkfnslkf <br>
-                                            lskflkfnslkf <br>
-
+                                            <?php
+                                            $idApp = null;
+                                            Conexion::conectar();
+                                            $instdescripcion = new Aplicaciones($_GET['idApp']);
+                                            $instdescripcion->mostrarDescripcionCompra($_GET['idApp']);
+                                            Conexion::desconectar();
+                                             ?>
                                         </p>
         							</section>
         						</div>
-        					<div class="tab-pane fade" id="service-two">
-        						<section class="container" class="container product-info">
-                                    <p>
-                                        lskflkfnslkf <br>
-                                        lskflkfnslkf <br>
-                                        lskflkfnslkf <br>
-                                        lskflkfnslkf <br>
-                                        lskflkfnslkf <br>
-                                        lskflkfnslkf <br>
-                                        lskflkfnslkf <br>
-                                        lskflkfnslkf <br>
-
-                                    </p>
-        						</section>
-        					</div>
                             <div class="tab-pane fade" id="service-tree" class="container product-info">
                                 <section class="container">
                                     <p>

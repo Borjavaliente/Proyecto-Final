@@ -1,8 +1,10 @@
 <?php
     include("header.php");
     include("class/aplicaciones.php");
+    include("class/comentario.php");
 ?>
 <link rel="stylesheet" href="css/producto.css" media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="css/comentarios.css" media="screen" title="no title" charset="utf-8">
         <br><br><br><br>
         <!-- Descripcion del producto -->
         <div class="container-fluid">
@@ -16,7 +18,7 @@
                         $idApp = $_GET['idApp'];
                         $instPortada = new Aplicaciones($_GET['idApp']);
                         $instPortada->mostrarPortadaCompra($_GET['idApp']);
-                        $_SESSION['idApp'] = $idApp; 
+                        $_SESSION['idApp'] = $idApp;
                         Conexion::desconectar();
                          ?>
 
@@ -37,7 +39,7 @@
                                    </div>
                                    <div class="modal-body">
                                         <!-- content goes here -->
-                                    <form method="POST" action="php/webuserCompra.php">
+                                    <form method="POST" action="php/agregarPedido.php">
                                           <div class="form-group">
                                             <label for="exampleInputPassword1">Password</label>
                                             <input type="password" name="pass" class="form-control" id="exampleInputPassword1" placeholder="Nuevo password" required="Campo Obligatorio">
@@ -86,29 +88,20 @@
         						</div>
                             <div class="tab-pane fade" id="service-tree" class="container product-info">
                                 <section class="container">
-                                    <p>
-                                        bbbbbbbbbbbb <br>
-                                        bbbbbbbbbbbb <br>
-                                        bbbbbbbbbbbb <br>
-                                        lskflkfnslkf <br>
-                                        lskflkfnslkf <br>
-                                        lskflkfnslkf <br>
-                                        lskflkfnslkf <br>
-                                        lskflkfnslkf <br>
-
-                                    </p>
+                                    <!-- CODIGO PARA INSERTAR LOS COMENTARIOS - POR AQUI SE COMENTA  -->
                                     <div class="container">
+                                            <div class="row">
+                                            </div>
 	                                       <div class="row">
                                         		<h3 style="text-align:center">COMENTA NUESTROS PRODUCTOS</h3>
                                         	</div>
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-12">
                             						<div class="widget-area no-padding blank">
                         								<div class="status-upload">
-                        									<form>
-                        										<textarea placeholder="Comenta....." ></textarea>
-                        										<button type="submit" class="btn btn-success green"><i class="fa fa-share"></i>Comentar</button>
-                        									</form>
+                        									<form action="php/agregarComentario.php" method="post">
+                        										<textarea placeholder="Comenta....." name="comentario"></textarea>
+                        										<center><input type="submit"  value="Comentar" class="btn btn-success green"></center>             </form>
                         								</div><!-- Status Upload  -->
                         							</div><!-- Widget Area -->
                         						</div>

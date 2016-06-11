@@ -1,25 +1,20 @@
 <?php
-    include("class/conexion.php");
 
     class Comentarios
     {
         private $idComentario;
         private $idApp;
         private $idUsuario;
-        private $nick;
         private $fecha;
         private $comentario;
-        private $activo;
 
-        public function __construct($idComentario=null,$idApp=null,$idUsuario=null,$nick=null,$fecha=null,$comentario=null,$activo=null)
+        public function __construct($idComentario=null,$idApp=null,$idUsuario=null,$fecha=null,$comentario=null)
         {
             $this->idComentario = $idComentario;
             $this->idApp = $idApp;
             $this->idUsuario = $idUsuario;
-            $this->nick = $nick;
             $this->fecha = $fecha;
             $this->comentario = $comentario;
-            $this->activo = $activo;
         }
 
         public function getidComentario()
@@ -52,15 +47,6 @@
             $this->idUsuario = $idUsuario;
         }
 
-        public function getnick()
-        {
-            return $this->nick;
-        }
-
-        public function setnick($nick)
-        {
-            $this->nick = $nick;
-        }
 
         public function getfecha()
         {
@@ -82,36 +68,57 @@
             $this->comentario = $comentario;
         }
 
-        public function getactivo()
-        {
-            return $this->activo;
-        }
 
-        public function setactivo($activo)
+        public function insertarComentario($idComentario,$idApp,$idUsuario,$fecha,$comentario)
         {
-            $this->activo = $activo;
-        }
-
-        public function insertarComentario($idComentario,$idApp,$idUsuario,$nick,$fecha,$comentario,$activo)
-        {
-            $insertar = "'$idComentario','$idapp','$idUsuario','$nick','$fecha','$comentario',$activo";
-            Conexion::conectar();
+            $insertar = "'$this->idComentario','$this->idApp','$this->idUsuario','$this->fecha','$this->comentario'";
             mysql_query("insert into comentarios values($insertar)");
-            Conexion::desconectar();
+
         }
+
+        /*
+        public function mostrarComentarios($idComentario)
+        {
+            $consulta = "SELECT DISTINCT comentario, fecha, nick, imgPerfil FROM comentarios c, usuarios u WHERE c.$this->idComentario=u.$this->idComentario ORDER BY fecha DESC";
+            $resultado=mysql_query($consulta);
+            while ($fila = mysql_fetch_row($resultado)) {
+                $comentario = $fila[0];
+                $fecha = $fila[1];
+                $nick = $fila[2];
+                $imgPerfil = $fila[3];
+
+                echo '
+                       <div class="comments-list">
+                               <p class="pull-right"><small>'$fecha'</small></p>
+                                <a class="media-left" href="#">
+                                  <img src="'$imgPerfil'" width="200px" height="100px" >
+                                </a>
+                                <div class="media-body">
+                                  <h4 class="media-heading user_name">'$nick'</h4>
+                                  '$comentario'
+
+                                  <p><small><a href="">Like</a> - <a href="">Share</a></small></p>
+                                </div>
+                       </div>';
+            }
+
+        }
+
+        /*
         public function eliminarComentario()
         {
-            Conexion::conectar();
             $consulta = "delete from comentarios where idUsuario='$this->idUsuario'";
             mysql_query($consulta);
+
         }
+
         public function bloquearComentario()
         {
-            Conexion::conectar();
             $consulta = "update comentarios set activo=0";
             mysql_query($consulta);
-            Conexion::desconectar();
         }
+        */
     }
+
 
  ?>

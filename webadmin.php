@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <?php
+    include("class/conexion.php");
+    //include("class/pedidos.php");
     /* COMPROBAMOS QUE EL USUARIO ES ADMIN Y QUE HA INICADO SESION  **/
     session_start();
     if($_SESSION['rol']!='admin'){
@@ -15,9 +17,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <title>Administrador</title>
         <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/spacelab/bootstrap.min.css" rel="stylesheet"/>
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
-        <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="css/bootstrap.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="screen" title="no title" charset="utf-8">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
     <body background="img/fondoadmin.jpg" width="100%" height="100%">
@@ -27,7 +29,8 @@
                               <div class="row-fluid">
                                 <div class="span12">
                                     <div class="span6">
-                                        <h1 class="muted" style="text-align:center" scrollamount="20">Panel Administrador</h1>
+                                        <h1 class="muted" style="text-align:center" scrollamount="20">Panel Administrador</h1><br><br>
+                                        <h3 class="muted" style="text-align:center">"Si lo construimos, ellos vendrán"</h3><br>
                                         <br><br>
                                     </div>
                                 </div>
@@ -37,35 +40,18 @@
                     </div>
                 </div>
         <div class="col-md-3">
-            <a href="cerrarsesion.php" class="btn btn-danger btn-block" style="width:320px">Cerrar Sesion</a>
+            <a href="cerrarsesion.php" class="btn btn-danger btn-block" style="width:480px">Cerrar Sesion</a>
             <ul class="nav nav-pills nav-stacked admin-menu">
                 <li><a href="" data-target-id="blog">Gestion del Blog</a></li>
                 <li><a href="" data-target-id="ofertas">Gestion de ofertas</a></li>
                 <li><a href="" data-target-id="producto">Gestion de producto</a></li>
                 <li><a href="" data-target-id="usuario">Gestion de usuarios</a></li>
-                <li>
-                    <div id="custom-search-input">
-                         <div class="input-group col-xs-12">
-                             <input type="text" class="search-query form-control" placeholder="Search"/>
-                                 <span class="input-group-btn">
-                                     <button class="btn btn-danger" type="submit">
-                                         <span class="glyphicon glyphicon-search"></span>
-                                     </button>
-                                 </span>
-                             </div>
-                     </div>
-                </li>
+                <li><a href="" data-target-id="pedidos">Ver Pedidos</a></li>
+                <li><a href="" data-target-id="apps">Ver Aplicaciones</a></li>
+                <li><a href="" data-target-id="usuarios">Ver Usuarios</a></li>
+                <li><a href="" data-target-id="correos">Ver Correos</a></li>
             </ul>
-
         </div>
-        <div class="col-md-9 admin-content" id="consulta">
-            <div class="container">
-                <div class="row">
-
-                                </div>
-                          </div>
-
-                    </div>
         <div class="col-md-9 admin-content" id="blog">
             <h1 style="text-align:center">Noticias</h1><br><br>
             <div class="container">
@@ -101,7 +87,7 @@
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
         <div class="col-md-9 admin-content" id="ofertas">
             <br><br><br>
             <form class="" action="php/agregarOfertas.php" method="post">
@@ -115,7 +101,7 @@
                     </tr>
                     <tr>
                         <td>Aplicacion</td><td><input type="number"  value="Aplicacion" class="form-control input-medium" name="app" ></td>
-                        <td>Porcentaje</td><td><input type="number"  value="Descuento" class="form-control input-medium" name="porcentaje" ></td>
+                        <td>precio Oferta</td><td><input type="number"  value="" class="form-control input-medium" name="precioOferta" ></td>
                     </tr>
                     <tr>
                         <td colspan="4" style="text-align:center">
@@ -130,18 +116,21 @@
                   <tr>
                       <td colspan="4" style="text-align:center"><strong>Eliminar Oferta</strong></td>
                   </tr>
-                  <td>
-                    <br>
-                  </td>
                   <tr>
                     <td style="text-align:center">Identificador de Oferta</td>
                   </tr>
                   <tr>
-                    <td colspan="4"><input type="number" class="form-control" name="idoferta" value="Abhishek Gorlagunta"/></td>
+                    <td colspan="4"><input type="number" class="form-control" name="idoferta" value=""/></td>
+                  </tr>
+                  <tr>
+                    <td style="text-align:center">Nuevo precio de App</td>
+                  </tr>
+                  <tr>
+                    <td colspan="4"><input type="number" class="form-control" name="precioNuevo" value=""/></td>
                   </tr>
                   <tr>
                     <td colspan="4" style="text-align:center">
-                    <input type="submit" class="btn btn-danger btn-lg btn-block" value="Eliminar"/>  
+                    <input type="submit" class="btn btn-danger btn-lg btn-block" value="Eliminar y Actualizar Precio"/>  
                     </td>
                   </tr>
                 </table>
@@ -310,6 +299,84 @@
                     </tr>
                 </table>
             </form>
+        </div>
+        <div class="col-md-9 admin-content" id="apps">
+            <div class="container">
+                <?php
+                    include("class/aplicaciones.php");
+                    //Aplicaciones
+                    $idApp = null;
+                    $idUsuario = null;
+                    $nombre = null;
+                    $version=null;
+                    $tipo=null;
+                    $categoria=null;
+                    $fechaLanz=null;
+                    $disponible=null;
+                    $precio=null;
+                    $descripcion=null;
+                    $autor=null;
+                    $portada=null;
+                    $imagen=null;
+                    Conexion::conectar();
+                    $instAplicaciones = new Aplicaciones($idApp,$idUsuario,$nombre,$version,$tipo,$categoria,$fechaLanz,$disponible,$precio,$descripcion,$autor,$portada,$imagen);
+                    $instAplicaciones->mostrarAplicacionesAdmin($idApp,$idUsuario,$nombre,$version,$tipo,$categoria,$fechaLanz,$disponible,$precio,$descripcion,$autor,$portada,$imagen);
+                    Conexion::desconectar();
+                 ?>
+            </div>
+        </div>
+        <div class="col-md-9 admin-content" id="pedidos">
+            <div class="container">
+                <?php
+                    include("class/pedidos.php");
+                    //Pedidos
+                    $idPedido = null;
+                    $idApp = null;
+                    $fechaCompra = null;
+                    $importe = null;
+                    Conexion::conectar();
+                    $instPortada = new Pedidos($idPedido,$idApp,$fechaCompra,$importe);
+                    $instPortada->mostrarPedidos($idPedido,$idApp,$fechaCompra,$importe);
+                    Conexion::desconectar();
+                 ?>
+            </div>
+        </div>
+        <div class="col-md-9 admin-content" id="usuarios">
+            <div class="container">
+                <?php
+
+                    $idUsuario=null;
+                    $nick=null;
+                    $nombre=null;
+                    $apellidos=null;
+                    $fechaNac=null;
+                    $rol=null;
+                    $imgPerfil=null;
+                    $correo=null;
+                    $pass=null;
+                    $estado=null;
+                    Conexion::conectar();
+                    $instPortada = new Usuarios($idUsuario,$nick,$nombre,$apellidos,$fechaNac,$rol,$imgPerfil,$correo,$pass,$estado);
+                    $instPortada->mostrarUsuariosAdmin($idUsuario,$nick,$nombre,$apellidos,$fechaNac,$rol,$imgPerfil,$correo,$pass,$estado);
+                    Conexion::desconectar();
+                 ?>
+            </div>
+        </div>
+        <div class="col-md-9 admin-content" id="correos">
+            <div class="container">
+                <?php
+                    include("class/contactos.php");
+                    $idContacto=null;
+                    $nombre=null;
+                    $email=null;
+                    $asunto=null;
+                    $mensaje=null;
+                    Conexion::conectar();
+                    $instContactos = new Contactos($idContacto,$nombre,$email,$asunto,$mensaje);
+                    $instContactos->mostrarCorreos($idContacto,$nombre,$email,$asunto,$mensaje);
+                    Conexion::desconectar();
+                 ?>
+            </div>
         </div>
 
     </div>

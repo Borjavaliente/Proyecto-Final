@@ -4,12 +4,12 @@
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
 <br><br><br><br><br>
 <?php
-include("class/conexion.php");
 include("class/noticias.php");
 
 @$titulo = $_POST['titulo'];
 @$contenido = $_POST['mensaje'];
-@$portada = $_POST['portada']; 
+@$portada = $_POST['portada'];
+@$fechapublicacion = $_POST['fechapublicacion'];
 Conexion::conectar();
 $consulta = "SELECT portada FROM noticias where titulo='$titulo'";
 $resultado = mysql_query($consulta);
@@ -20,8 +20,8 @@ Conexion::desconectar();
 echo $portada;
 
 Conexion::conectar();
-$instNoticia = new Noticia($titulo,$contenido,$portada);
-$instNoticia->mostrarNoticia($titulo,$contenido,$portada);
+$instNoticia = new Noticia($titulo,$contenido,$portada,$fechapublicacion);
+$instNoticia->mostrarNoticia($titulo,$contenido,$portada,$fechapublicacion);
 Conexion::desconectar();
  ?>
 <br><br><br><br><br>

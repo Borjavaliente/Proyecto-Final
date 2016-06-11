@@ -24,7 +24,7 @@
                     <div class="well text-center">
                         <h2 style="text-align:center">Contacta con nosotros</h2><br>
                        <p><small>Los campos con * son obligatorios</small></p>
-                       <form action="" method="post">
+                       <form action="php/correoContactos.php" method="post">
                           <input type='hidden' name='csrfmiddlewaretoken' value='' />
                           <div class="form-group">
                              <input class="form-control" id="id_nome" maxlength="100" name="nome" placeholder="Nombre *" type="text" required="Campo Obligatorio"/>
@@ -38,7 +38,7 @@
                           <div class="form-group">
                              <textarea class="form-control" cols="40" id="id_mensagem" name="mensagem" placeholder="Mensaje *" rows="10" required="Campo Obligatorio"></textarea>
                           </div>
-                          <button type="submit" class="btn btn-default">Enviar</button>
+                          <input type="submit" class="btn btn-success" value="Enviar">
                        </form>
                     </div>
                  </div>

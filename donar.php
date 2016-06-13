@@ -36,7 +36,7 @@
                                 <div class="col-xs-12">
                                     <div class="control-group">
                                         <label class="control-label"><center>Cantidad</center></label><br>
-                                        <input class="form-control input-md" type="number" name="cantidad" value="" min="1" max="100">
+                                        <input class="form-control input-md" type="number" name="cantidad" pattern="[0-9]{2}" value="" min="1" max="100">
                                         <br>
                                     </div>
                                 </div>
@@ -45,15 +45,15 @@
                                   <label class="col-md-control-label" for="caducidad"><center>Fecha de caducidad</center></label>
                                   <br>
                                   <div class="col-md-12">
-                                  <center><input id="caducidad" name="caducidad" type="text" placeholder="XX/XX" class="form-control input-md" required=""></center>
+                                  <center><input id="caducidad" name="caducidad" type="text" placeholder="20XX" pattern="[0-9]{4}"  class="form-control input-md" maxlength="4" required=""></center>
                                   </div>
                                 </div>
                                 <br><br>
                                 <div class="form-group">
-                                  <label class="col-md-control-label" for="caducidad"><center>Ultimos 6 digitos del Nº de tarjeta</center></label>
+                                  <label class="col-md-control-label" for="caducidad"><center>Ultimos 4 digitos del Nº de tarjeta</center></label>
                                   <br>
                                   <div class="col-md-12">
-                                  <center><input id="caducidad" name="caducidad" type="text" placeholder="00-0000" class="form-control input-md" required=""></center>
+                                  <center><input id="caducidad" name="caducidad" type="text" placeholder="0000" pattern="[0-9]{4}" class="form-control input-md" maxlength="4" required=""></center>
                                   </div>
                                 </div>
                                 <br>
@@ -63,7 +63,7 @@
                                     <center><input class="btn btn-success btn-lg" type="submit" value="Donar"></center>
                                 </div>
                             </div>
-                            <br>    
+                            <br>
                         </form>
                     </div>
                 </div>
@@ -91,10 +91,7 @@
                 </p>
             </div>
         </div>
-
     </div>
-
-
         <br><br>
              <!-- botones sociales -->
              <div class="container">

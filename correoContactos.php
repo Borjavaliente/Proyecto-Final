@@ -14,26 +14,7 @@ $instcontacto = new Contactos($idContacto,$nombre,$email,$asunto,$mensaje);
 $instcontacto->insertarcontacto($idContacto,$nombre,$email,$asunto,$mensaje);
 Conexion::desconectar();
 
-if ($instcontacto) {
-    header("Location: ../webuser.php");
-} else {
-    echo "mal";
-}
-
-
-/*
-$cabeceras = 'From:' . '$para' . "\r\n" .
-    'Reply-To: juanitomaravilla.prueba@gmail.com' . "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
-
-mail("juanitomaravilla.prueba@gmail.com", $titulo, $mensaje, $cabeceras);
-
 header("Location: ../webuser.php");
-
-mail("juanitomaravilla.prueba@gmail.com,juanitomaravilla.prueba@gmail.com","asuntillo","Este es el cuerpo del mensaje");
-
- //
-*/
 
 
  // Información para configuracion

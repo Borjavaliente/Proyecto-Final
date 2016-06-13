@@ -65,8 +65,7 @@ class Contactos
     }
     public function mostrarCorreos($idContacto,$nombre,$email,$asunto,$mensaje)
     {
-        $consulta = "SELECT * FROM contactos ORDER BY idContacto DESC";
-        mysql_query($consulta);
+        $consulta = "SELECT * FROM contactos";
         $resultado=mysql_query($consulta);
         $num = 0;
         echo "<center>";
@@ -75,26 +74,24 @@ class Contactos
         echo "<td colspan='6'> <center> <b> Correos </b> </center> </td>";
         echo "</tr>";
         echo "<tr>";
-        echo "<td><b>idContacto</b></font><br><br></td>";
         echo "<td><b>nombre</b></font><br><br></td>";
         echo "<td><b>email</b></font><br><br></td>";
         echo "<td><b>asunto</b></font><br><br></td>";
         echo "<td><b>mensaje</b></font><br><br></td>";
         echo "</tr>";
-            while ($fila = mysql_fetch_row($resultado)) {
-                $this->idContacto = $fila[0];
-                $this->nombre = $fila[1];
-                $this->email = $fila[2];
-                $this->asunto = $fila[3];
-                $this->mensaje = $fila[4];
-                echo "<tr>";
-                echo "<td width=\"25%\"><font face = \"Verdana\">" . "<center>" . $fila[0]."</center>"."</font></td>";
-                echo "<td width=\"25%\"><font face = \"Verdana\">" . "<center>" . $fila[1]."</center>"."</font></td>";
-                echo "<td width=\"25%\"><font face = \"Verdana\">" . "<center>" . $fila[2]."</center>"."</font></td>";
-                echo "<td width=\"25%\"><font face = \"Verdana\">" . "<center>" . $fila[3]."</center>"."</font></td>";
-                echo "<td width=\"25%\"><font face = \"Verdana\">" . "<center>" . $fila[4]."</center>"."</font></td>";
-                echo "</tr>";
-                $num ++;
+        while ($fila = mysql_fetch_array($resultado)) {
+            $this->idContacto = $fila[0];
+            $this->nombre = $fila[1];
+            $this->email = $fila[2];
+            $this->asunto = $fila[3];
+            $this->mensaje = $fila[4];
+            echo "<tr>";
+            echo "<td width=\"25%\"><font face = \"Verdana\">" . "<center>" . $fila["nombre"]."</center>"."</font></td>";
+            echo "<td width=\"25%\"><font face = \"Verdana\">" . "<center>" . $fila["email"]."</center>"."</font></td>";
+            echo "<td width=\"25%\"><font face = \"Verdana\">" . "<center>" . $fila["asunto"]."</center>"."</font></td>";
+            echo "<td width=\"25%\"><font face = \"Verdana\">" . "<center>" . $fila["mensaje"]."</center>"."</font></td>";
+            echo "</tr>";
+            $num ++;
             }
         echo "</center>";
         echo "<tr>";

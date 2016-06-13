@@ -14,18 +14,18 @@
          		</div>
          		<div class="modal-body">
                      <!-- content goes here -->
-         			<form method="POST" action="php/actualizaUsuario.php">
+         			<form method="POST" action="php/actualizarUsuario.php">
                         <div class="form-group">
                           <label for="exampleInputEmail1">Nick de usuario</label>
                           <input type="text" name="nick" class="form-control" id="exampleInputEmail1" placeholder="Introduzca nuevo Nick" required="Campo Obligatorio">
                         </div>
                        <div class="form-group">
                          <label for="exampleInputEmail1">Nombre de usuario</label>
-                         <input type="text" name="nombre" class="form-control" id="exampleInputEmail1" placeholder="Introduzca nuevo nombre" required="Campo Obligatorio">
+                         <input type="text" name="nombre" class="form-control" id="exampleInputEmail1" pattern="[A-Za-z]{4-16}" placeholder="Introduzca nuevo nombre" required="Campo Obligatorio">
                        </div>
                        <div class="form-group">
                          <label for="exampleInputEmail1">Apellido de usuario</label>
-                         <input type="text" name="apellido" class="form-control" id="exampleInputEmail1" placeholder="Introduzca nuevo apellido" required="Campo Obligatorio">
+                         <input type="text" name="apellido" class="form-control" id="exampleInputEmail1" pattern="[A-Za-z]{4-16}" placeholder="Introduzca nuevo apellido" required="Campo Obligatorio">
                        </div>
                        <div class="form-group">
                          <label for="exampleInputEmail1">Fecha de Nacimiento</label>

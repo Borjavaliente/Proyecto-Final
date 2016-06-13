@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="item ">
-                <img src="img/pong.jpg" class="img-responsive" alt="">
+                <img src="img/trollpong1.jpg" class="img-responsive" alt="">
                 <div class="carousel-caption">
                     <h3> Troll Pong la joya de los primeros juegos </h3>
                 </div>

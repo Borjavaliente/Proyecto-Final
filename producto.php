@@ -2,6 +2,7 @@
     include("header.php");
     include("class/aplicaciones.php");
     include("class/comentario.php");
+
 ?>
 <link rel="stylesheet" href="css/producto.css" media="screen" title="no title" charset="utf-8">
 <link rel="stylesheet" href="css/comentarios.css" media="screen" title="no title" charset="utf-8">
@@ -27,7 +28,7 @@
                             <br><br><br>
                             <center>
         					<div class="btn-group cart">
-        						<button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-success center-block">Comprar</button>
+        						<button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-success center-block">Descargar</button>
         					</div>
                             <!-- FORMULARIO EMERGENTE QUE SE ABRE CUANDO PULSAS EL BOTON COMPRAR  -->
                             <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -35,15 +36,11 @@
                                <div class="modal-content">
                                    <div class="modal-header">
                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                       <center><h3 class="modal-title" id="lineModalLabel">Datos de la compra</h3></center>
+                                       <center><h3 class="modal-title" id="lineModalLabel">En breves comenzará la descarga</h3></center>
                                    </div>
                                    <div class="modal-body">
                                         <!-- content goes here -->
                                     <form method="POST" action="php/agregarPedido.php">
-                                          <div class="form-group">
-                                            <label for="exampleInputPassword1">Password</label>
-                                            <input type="password" name="pass" class="form-control" id="exampleInputPassword1" placeholder="Nuevo password" required="Campo Obligatorio">
-                                          </div>
                                           <center><input type="submit" class="btn btn-success" value="Validar">
                                     </form>
                                    </div>
@@ -64,6 +61,19 @@
         				</div>
         			</div>
         		</div>
+                <br><br><br>
+                <?php
+                    $idComentario = null;
+                    $idApp = null;
+                    $idUsuario = null;
+                    $fecha = null;
+                    $comentario = null;
+                    Conexion::conectar();
+                    $insertarComentario = new Comentarios($idComentario,$_GET['idApp'],$idUsuario,$fecha,$comentario);
+                    $insertarComentario->verComentarios($idComentario,$_GET['idApp'],$idUsuario,$fecha,$comentario);
+                    Conexion::desconectar();
+                 ?>
+                 <br><br>
         		<div class="container-fluid">
         			<div class="col-md-12 product-info">
         					<ul id="myTab" class="nav nav-tabs nav_tabs">

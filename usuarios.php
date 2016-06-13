@@ -147,6 +147,12 @@
             mysql_query($consulta);
 
         }
+        public function hacerSuperUsuario($idUsuario)
+        {
+            $consulta = "update usuarios set rol='admin' where idUsuario='$this->idUsuario'";
+            mysql_query($consulta);
+
+        }
 
         public function actualizaUsuarios($idUsuario,$nick,$nombre,$apellidos,$fechaNac,$rol,$imgPerfil,$correo,$pass,$estado)
         {

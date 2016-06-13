@@ -9,18 +9,15 @@
         private $precioOferta;
         private $fechaInicio;
         private $fechaFin;
-        private $precioNuevo;
 
-        public function __construct($idOferta=null,$idApp=null,$precioOferta=null,$fechaInicio=null,$fechaFin=null,$precioNuevo=null)
+        public function __construct($idOferta=null,$idApp=null,$precioOferta=null,$fechaInicio=null,$fechaFin=null)
         {
-            //parent::__construct();
+
             $this->idOferta = $idOferta;
             $this->idApp = $idApp;
             $this->precioOferta = $precioOferta;
             $this->fechaInicio = $fechaInicio;
             $this->fechaFin = $fechaFin;
-            $this->precioNuevo = $precioNuevo;
-
         }
 
         public function getidOferta()
@@ -74,36 +71,26 @@
         {
             $this->fechaFin = $fechaFin;
         }
-        public function getprecioNuevo()
-        {
-            return $this->precioNuevo;
-        }
 
-        public function setprecioNuevo($precioNuevo)
-        {
-            $this->precioNuevo = $precioNuevo;
-        }
 
-        public function agregarOferta($idOferta,$idApp,$precioOferta,$fechaInicio,$fechaFin,$precioNuevo)
+
+
+        public function agregarOferta($idOferta,$idApp,$precioOferta,$fechaInicio,$fechaFin)
         {
-            //$this->fechaInicio = date("Y-m-d");
-            //$this->fechaFin = date("Y-m-d");
-            $insertar = "'$this->idOferta','$this->idApp','$this->precioOferta','$this->fechaInicio','$this->fechaFin','$this->precioNuevo'";
+            $insertar = "'$this->idOferta','$this->idApp','$this->precioOferta','$this->fechaInicio','$this->fechaFin'";
             mysql_query("insert into ofertas values($insertar)");
 
+
         }
 
-        public function eliminarOferta($idOferta,$precioNuevo)
+        public function eliminarOferta($idOferta)
         {
-            $consulta = "DELETE FROM ofertas WHERE idApp='$this->idOferta'";
-            $consultilla = "SELECT idApp FROM ofertas WHERE idOferta = '$this->idOferta'";
+            $consulta = "DELETE FROM ofertas WHERE idOferta='$this->idOferta'";
             mysql_query($consulta);
-            $var = mysql_query($consultilla);
-            $consultaza = "UPDATE aplicaciones SET precio=$this->precioNuevo";
-            mysql_query($consultaza);
+
         }
 
-
+        /*
         public function triggerAgregarOferta($idApp)
         {
             $consulta = "SELECT precioOferta FROM ofertas WHERE idApp='$this->idApp'";
@@ -132,7 +119,7 @@
             ";
             mysql_query($trigger);
 
-        }
+        } */
 
     }
 

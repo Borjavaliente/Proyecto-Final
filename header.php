@@ -33,7 +33,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a target="_blank" href="#" class="navbar-brand"><img class="logotipo" src="img/logo.jpg" alt=""/></a>
+                    <img class="logotipo" src="img/logo.jpg" width="20px" height="10px" alt=""/>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
@@ -92,15 +92,6 @@
                                 </li>
                             </ul>
                         </li>
-                    </ul>
-                    <ul>
-                        <form action="" class="search-form">
-                                 <div class="form-group has-feedback">
-                                   <label for="search" class="sr-only">Explora</label>
-                                   <input type="text" class="form-control" name="search" id="search" placeholder="search">
-                                       <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                               </div>
-                         </form>
                     </ul>
                 </div>
             </div>

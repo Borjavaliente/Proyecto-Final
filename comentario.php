@@ -1,5 +1,4 @@
 <?php
-
     class Comentarios
     {
         private $idComentario;
@@ -75,7 +74,45 @@
             mysql_query("insert into comentarios values($insertar)");
 
         }
+        public function verComentarios($idComentario,$idApp,$idUsuario,$fecha,$comentario){
+            $consulta = "SELECT * from comentarios WHERE idApp='$this->idApp'";
+            $resultado = mysql_query($consulta);
+            $num = 0;
+            echo "<center>";
+            echo "<table>";
+            echo "<tr>";
+            echo "<td colspan='5'> <center> <b> Comentarios de la Aplicacion </b> </center> </td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td><b><center>fecha</center></b></font><br><br></td>";
+            echo "<td><b><center>comentario</center></b></font><br><br></td>";
+            echo "</tr>";
+            while ($fila = mysql_fetch_array($resultado)) {
+                $this->idComentario = $fila[0];
+                $this->idApp= $fila[1];
+                $this->idUsuario = $fila[2];
+                $this->fecha = $fila[3];
+                $this->comentario = $fila[4];
+                echo "<tr>";
+                //echo "<td width=\"25%\"><font face = \"Verdana\">" . "<center>" . $fila["idComentario"]."</center>"."</font></td>";
+                //echo "<td width=\"25%\"><font face = \"Verdana\">" . "<center>" . $fila["idApp"]."</center>"."</font></td>";
+                //echo "<td width=\"25%\"><font face = \"Verdana\">" . "<center>" . $fila["idUsuario"]."</center>"."</font></td>";
+                echo "<td width=\"25%\"><font face = \"Verdana\">" . "<center>" . $fila["fecha"]. "</center>"."</font></td>";
+                echo "<td width=\"25%\"><font face = \"Verdana\">" . "<center>" . $fila["comentario"]."</center>"."</font></td>";
+                echo "</tr>";
+                $num ++;
+                }
+            echo "</center>";
+            echo "<tr><br>";
+            echo "<td><b><center>Numero de comentarios:</center></b></td>";
+            echo "<td colspan='4'><center><b><center> $num </center></b></td>";
+            echo "</tr>";
+            echo "</table>";
+            echo "</center>";
 
+            }
+
+        }
         /*
         public function mostrarComentarios($idComentario)
         {
@@ -103,7 +140,7 @@
             }
 
         }
-
+        */
         /*
         public function eliminarComentario()
         {
@@ -118,7 +155,4 @@
             mysql_query($consulta);
         }
         */
-    }
-
-
  ?>

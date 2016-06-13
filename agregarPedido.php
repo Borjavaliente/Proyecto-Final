@@ -1,7 +1,7 @@
 <?php
 
-    require_once("../class/pedidos.php");
-    require_once("../class/conexion.php");
+    include("../class/conexion.php");
+    include("../class/pedidos.php");
     session_start();
     //$pass = $_POST['pass'];
     //$compruebaPassw = $_SESSION['passw'];
@@ -15,11 +15,11 @@
     $instPedido = new Pedidos($idPedido,$idApp,$idUsuario,$fechaCompra,$importe);
     $instPedido->insertarPedido($idPedido,$idApp,$idUsuario,$fechaCompra,$importe);
     Conexion::desconectar();
-    echo '
+    /*echo '
     <script type="text/javascript">
     alert("Pedido realizado")
     </script>
-    ';
+    ';*/
     header("Location:../webuser.php");
 
  ?>

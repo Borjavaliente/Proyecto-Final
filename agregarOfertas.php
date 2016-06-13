@@ -4,18 +4,15 @@
     require_once("../class/conexion.php");
 
     $idOferta = null;
-    //$idApp = $_POST['app'];
     $idApp = $_POST['app'];
-    //$precioOferta = $_POST['precioOferta'];
+    $precioOferta = $_POST['precioOferta'];
     $fechaInicio = $_POST['fechaInicio'];
-    $precio = $_POST['precioOferta'];
     $fechaFin = $_POST['fechaFin'];
-    $precioNuevo = null;
-    $instOferta = new Ofertas($idOferta,$idApp,$precio,$fechaInicio,$fechaFin,$precioNuevo);
+    $instOferta = new Ofertas($idOferta,$idApp,$precioOferta,$fechaInicio,$fechaFin);
     Conexion::conectar();
-    $instOferta->agregarOferta($idOferta,$idApp,$precio,$fechaInicio,$fechaFin,$precioNuevo);
+    $instOferta->agregarOferta($idOferta,$idApp,$precioOferta,$fechaInicio,$fechaFin);
     //$instOferta->triggerAgregarOferta($idApp);
     Conexion::desconectar();
-    //header('Location:../webadmin.php');
+    header('Location:../webadmin.php');
 
  ?>

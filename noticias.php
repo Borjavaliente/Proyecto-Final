@@ -1,13 +1,11 @@
 <?php
 
     class Noticia {
-
         private $idNoticia;
         private $titulo;
         private $portada;
         private $contenido;
         private $fechapublicacion;
-
     public function __construct($idNoticia=null,$titulo=null,$portada=null,$contenido=null,$fechapublicacion=null)
     {
 
@@ -71,7 +69,11 @@
         $insertar = "'$this->idNoticia','$this->titulo','$this->contenido','$this->portada','$this->fechapublicacion'";
         mysql_query("insert into noticias values('$this->idNoticia','$this->titulo','$this->portada','$this->contenido','$this->fechapublicacion')");
     }
-
+    public function eliminarNoticia($idNoticia)
+    {
+        $consulta = "delete from noticias where idNoticia='$this->idNoticia'";
+        mysql_query($consulta);
+    }
     public function mostrarNoticia($titulo,$contenido,$portada,$fechapublicacion)
     {
         $consulta = "SELECT titulo,contenido,portada,fechapublicacion FROM noticias";
@@ -99,9 +101,48 @@
               </div>
             </div>
             ';
-
         }
+    }
 
+
+    public function mostrarNoticiaAdmin($idNoticia,$titulo,$portada,$contenido,$fechapublicacion)
+    {
+        $consulta = "SELECT * FROM noticias";
+        $resultado=mysql_query($consulta);
+        $num = 0;
+        echo "<center>";
+        echo "<table border='5'>";
+        echo "<tr>";
+        echo "<td colspan='5'> <center> <b> Noticias </b> </center> </td>";
+        echo "</tr>";
+        echo "<tr>";
+        echo "<td><b>idNoticia</b></font></td>";
+        echo "<td><b>titulo</b></font></td>";
+        echo "<td><b>portada</b></font></td>";
+        echo "<td><b>contenido</b></font></td>";
+        echo "<td><b>fechapublicacion</b></font></td>";
+        echo "</tr>";
+        while ($fila = mysql_fetch_array($resultado)) {
+            $this->idNoticia = $fila[0];
+            $this->titulo = $fila[1];
+            $this->portada = $fila[2];
+            $this->contenido = $fila[3];
+            $this->fechapublicacion = $fila[4];
+            echo "<tr>";
+            echo "<td width=\"25%\"><font face = \"Verdana\">" . "<center>" . $fila['idNoticia']."</center>"."</font></td>";
+            echo "<td width=\"25%\"><font face = \"Verdana\">" . "<center>" . $fila["titulo"]."</center>"."</font></td>";
+            echo "<td width=\"25%\"><font face = \"Verdana\">" . "<center>" . $fila["portada"]."</center>"."</font></td>";
+            echo "<td width=\"25%\"><font face = \"Verdana\">" . "<center>" . $fila["contenido"]."</center>"."</font></td>";
+            echo "<td width=\"25%\"><font face = \"Verdana\">" . "<center>" . $fila['fechaPublicacion']."</center>"."</font></td>";
+            echo "</tr>";
+            $num ++;
+            }
+        echo "</center>";
+        echo "<tr>";
+        echo "<td><b>Numero de Noticias:</b></td>";
+        echo "<td colspan='5'><center><b> $num </b></td>";
+        echo "</tr>";
+        echo "</table>";
     }
 
     }

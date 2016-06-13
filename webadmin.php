@@ -40,7 +40,7 @@
                     </div>
                 </div>
         <div class="col-md-3">
-            <a href="cerrarsesion.php" class="btn btn-danger btn-block" style="width:480px">Cerrar Sesion</a>
+            <a href="cerrarsesion.php" class="btn btn-danger" style="width:290px">Cerrar Sesion</a>
             <ul class="nav nav-pills nav-stacked admin-menu">
                 <li><a href="" data-target-id="blog">Gestion del Blog</a></li>
                 <li><a href="" data-target-id="ofertas">Gestion de ofertas</a></li>
@@ -50,6 +50,7 @@
                 <li><a href="" data-target-id="apps">Ver Aplicaciones</a></li>
                 <li><a href="" data-target-id="usuarios">Ver Usuarios</a></li>
                 <li><a href="" data-target-id="correos">Ver Correos</a></li>
+                <li><a href="" data-target-id="vips">Ver VIPS</a></li>
             </ul>
         </div>
         <div class="col-md-9 admin-content" id="blog">
@@ -73,14 +74,40 @@
                                     <textarea class="form-control" id="message" name="mensaje" placeholder="Escriba aqui el mensaje" rows="8"></textarea>
                                     <br/>
                                     <div class="row">
-                                        <div class="col-xs-9 col-md-9 form-group">
+                                        <div class=" form-group">
                                             <input class="btn btn-primary pull-right btn-lg btn-block" type="submit" value="Insertar noticia">
                                         </div>
+                                        <br><br>
                                 </form>
-
+                                <form class="" action="php/eliminarNoticia.php" method="post">
+                                  <table class="table table-bordered">
+                                    <tr>
+                                        <td colspan="4" style="text-align:center"><strong>Eliminar Noticia</strong></td>
+                                    </tr>
+                                    <tr>
+                                      <td colspan="">Nº de noticia</td><td colspan="3"><input type="number" name="idNoticia" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" style="text-align:center">
+                                        <input type="submit" class="btn btn-danger btn-lg btn-block" value="Eliminar"/>  
+                                        </td>
+                                    </tr>
+                                  </table>
+                                </form>
+                                <br><br>
                                 </div>
                                 <?php
-                                    echo "Aqui va el php que mira los ultimos post";
+
+                                    include("class/noticias.php");
+                                    $idNoticia=0;
+                                    $titulo=null;
+                                    $portada=null;
+                                    $contenido=null;
+                                    $fechapublicacion=date("Y-m-d");
+                                    Conexion::conectar();
+                                    $instNoticia = new Noticia($idNoticia,$titulo,$portada,$contenido,$fechapublicacion);
+                                    $instNoticia->mostrarNoticiaAdmin($idNoticia,$titulo,$portada,$contenido,$fechapublicacion);
+                                    Conexion::desconectar();
                                  ?>
                             </section>
                             </div>
@@ -123,14 +150,8 @@
                     <td colspan="4"><input type="number" class="form-control" name="idoferta" value=""/></td>
                   </tr>
                   <tr>
-                    <td style="text-align:center">Nuevo precio de App</td>
-                  </tr>
-                  <tr>
-                    <td colspan="4"><input type="number" class="form-control" name="precioNuevo" value=""/></td>
-                  </tr>
-                  <tr>
                     <td colspan="4" style="text-align:center">
-                    <input type="submit" class="btn btn-danger btn-lg btn-block" value="Eliminar y Actualizar Precio"/>  
+                    <input type="submit" class="btn btn-danger btn-lg btn-block" value="Eliminar"/>  
                     </td>
                   </tr>
                 </table>
@@ -229,8 +250,8 @@
                         <td colspan="4" style="text-align:center"><strong>Usuarios</strong></td>
                     </tr>
                     <tr>
-                        <td>Nombre</td><td><input type="text" class="form-control input-medium" name="nombre" value="Nombre"/></td>
-                        <td>Apellido</td><td><input class="form-control input-medium" type="text" name="apellidos" value="Apellidos"/></td>
+                        <td>Nombre</td><td><input type="text" class="form-control input-medium" name="nombre" /></td>
+                        <td>Apellido</td><td><input class="form-control input-medium" type="text" name="apellidos"/></td>
                     </tr>
                     <tr>
                         <td>Nick</td><td><input class="form-control input-medium" type="text" name="nick" /></td>
@@ -238,7 +259,7 @@
                     </tr>
                     <tr>
                         <td>Fecha de Nacimiento</td><td><input class="form-control input-medium" type="date" value="P06" name="fecha"/></td>
-                        <td>Correo</td><td><input class="form-control input-medium" type="text" value="1" name="correo"/></td>
+                        <td>Correo</td><td><input class="form-control input-medium" type="text"  name="correo"/></td>
                     </tr>
                     <tr>
                         <td>Password</td><td><input class="form-control input-medium" type="password" value="P06" name="pass"/></td>
@@ -290,11 +311,27 @@
                         <td colspan="4" style="text-align:center"><strong>Desbloquear un usuario</strong></td>
                     </tr>
                     <tr>
-                        <td>Usuario</td><td><input class="form-control input-medium" type="text" value="Bachelors" name="idusuario"/></td>
+                        <td>Usuario</td><td><input class="form-control input-medium" type="number" value="Bachelors" name="idusuario"/></td>
                     </tr>
                     <tr>
                         <td colspan="4" style="text-align:center">
                         <input type="submit" class="btn btn-primary btn-lg btn-block" value="Desbloquear"/>  
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <br><br>
+            <form class="" action="php/hacerSuperUsuario.php" method="post">
+                <table class="table table-bordered">
+                    <tr>
+                        <td colspan="4" style="text-align:center"><strong>Hacer Admin</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Usuario</td><td><input class="form-control input-medium" type="number" value="Bachelors" name="idusuario"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align:center">
+                        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Hacer Admin"/>  
                         </td>
                     </tr>
                 </table>
@@ -377,6 +414,93 @@
                     Conexion::desconectar();
                  ?>
             </div>
+        </div>
+        <div class="col-md-9 admin-content" id="vips">
+            <?php
+                Conexion::conectar();
+                echo "<h1><center>Usuario que mas Comenta</h1><br><br>";
+                $consulta = "SELECT nick AS 'Usuario que mas comenta',count(*) AS 'No_d_repeticiones' FROM comentarios c, usuarios u WHERE c.idUsuario=u.idUsuario GROUP BY c.idUsuario HAVING count(*)>0 LIMIT 1";
+                $resultado = mysql_query($consulta);
+                while($fila = mysql_fetch_row($resultado))
+                {
+                    $u = $fila[0];
+                    $c = $fila[1];
+
+                    echo '<center>
+                    <table colspan="8" border="1px">
+                        <tr>
+                            <td colspan="4"><strong>Usuario</strong></td>
+                            <td colspan="4"><strong>Nº Comentarios</strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">'.$u.'</td>
+                            <td colspan="4">'.$c.'</td>
+                        </tr>
+                    </table>
+                    </center>
+                    <br><br>
+                    ';
+                }
+
+                Conexion::desconectar();
+             ?>
+             <!-- USUARIO QUE MAS SUBE APLICACIONES -->
+             <?php
+             Conexion::conectar();
+             echo "<h1><center>Usuario que mas Sube Aplicaciones</h1><br><br>";
+             $consulta = "SELECT nick AS 'Usuario que mas sube Apps',count(*) AS 'No de Apps' FROM aplicaciones a, usuarios u WHERE a.idUsuario=u.idUsuario GROUP BY a.idUsuario HAVING count(*)>0 LIMIT 1";
+             $resultado = mysql_query($consulta);
+             while($fila = mysql_fetch_row($resultado))
+             {
+                 $u = $fila[0];
+                 $a = $fila[1];
+
+                 echo '<center>
+                 <table colspan="8" border="1px">
+                     <tr>
+                         <td colspan="4"><strong>Usuario</strong></td>
+                         <td colspan="4"><strong>Nº Aplicaciones</strong></td>
+                     </tr>
+                     <tr>
+                         <td colspan="4">'.$u.'</td>
+                         <td colspan="4">'.$a.'</td>
+                     </tr>
+                 </table>
+                 </center>
+                 <br><br>
+                 ';
+             }
+
+             Conexion::desconectar();
+          ?>
+          <?php
+          Conexion::conectar();
+          echo "<h1><center>Usuario que mas Descargas realiza</h1><br><br>";
+          $consulta = "SELECT nick AS 'Usuario que mas Descarga',count(*) AS 'No de Descargas' FROM pedidos p, usuarios u WHERE p.idUsuario=u.idUsuario GROUP BY p.idUsuario HAVING count(*)>0 LIMIT 1";
+          $resultado = mysql_query($consulta);
+          while($fila = mysql_fetch_row($resultado))
+          {
+              $u = $fila[0];
+              $p = $fila[1];
+
+              echo '
+              <center>
+              <table colspan="8" border="1px">
+                  <tr>
+                      <td colspan="4"><strong>Usuario</strong></td>
+                      <td colspan="4"><strong>Nº Descargas</strong></td>
+                  </tr>
+                  <tr>
+                      <td colspan="4">'.$u.'</td>
+                      <td colspan="4">'.$p.'</td>
+                  </tr>
+              </table>
+              </center>
+              ';
+          }
+
+          Conexion::desconectar();
+       ?>
         </div>
 
     </div>
